@@ -2,7 +2,7 @@ cd .repo/local_manifests
 git pull
 cd ../..
 
-repo sync -j40
+repo sync -j8
 
 cd hardware/qcom/gps
 git fetch http://android.googlesource.com/platform/hardware/qcom/gps refs/changes/37/464137/1 && git cherry-pick FETCH_HEAD
