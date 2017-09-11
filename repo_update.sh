@@ -14,6 +14,8 @@ git fetch http://android.googlesource.com/platform/hardware/qcom/media refs/chan
 cd ../display
 git fetch http://android.googlesource.com/platform/hardware/qcom/display refs/changes/35/437235/1 && git cherry-pick FETCH_HEAD
 git fetch http://android.googlesource.com/platform/hardware/qcom/display refs/changes/36/437236/1 && git cherry-pick FETCH_HEAD
+cd ../bt
+git fetch http://android.googlesource.com/platform/hardware/qcom/bt refs/changes/17/478117/1 && git cherry-pick FETCH_HEAD
 cd ../../../system/core
 git fetch http://android.googlesource.com/platform/system/core refs/changes/37/469437/1 && git cherry-pick FETCH_HEAD
 cd ../../frameworks/av
