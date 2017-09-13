@@ -20,5 +20,6 @@ cd ../../../system/core
 git fetch http://android.googlesource.com/platform/system/core refs/changes/37/469437/1 && git cherry-pick FETCH_HEAD
 cd ../../frameworks/av
 git fetch http://android.googlesource.com/platform/frameworks/av refs/changes/92/384692/2 && git cherry-pick FETCH_HEAD
-cd ../../
-
+cd ../../packages/inputmethods/LatinIME
+git fetch http://android.googlesource.com/platform/packages/inputmethods/LatinIME refs/changes/78/469478/1 && git cherry-pick FETCH_HEAD
+cd ../../../
