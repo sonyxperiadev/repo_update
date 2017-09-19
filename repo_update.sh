@@ -39,6 +39,14 @@ git fetch http://android.googlesource.com/platform/system/core refs/changes/52/2
 git fetch http://android.googlesource.com/platform/system/core refs/changes/12/373812/1 && git cherry-pick FETCH_HEAD
 cd ../extras
 git cherry-pick c71eaf37486bed9163ad528f51de29dd56b34fd2
+cd ../bt
+git cherry-pick 4e0f8cd65b4fbfd22612d1467b1c4df03829cfd6
+git cherry-pick 69d7436c605222ba98604533d79b6861bd434e9b
+git cherry-pick d9eebf7a4da76764203779e35f3d288e75b7521b
+git cherry-pick de9e5d56c8d0e8f5033dd9c3d3b1d7f013709fe8
+git cherry-pick 7ea6db20a9a1225f58fd507b51501f8c21d28c75
+git cherry-pick ff6e31a55d3904770cd3cf6b2cd62f607e841dc2
+git cherry-pick 8952869a7e688440f9021da0f4cdf926f86149b6
 cd ../../packages/apps/Music
 git cherry-pick 6036ce6127022880a3d9c99bd15db4c968f3e6a3
 cd ../../../frameworks/av
