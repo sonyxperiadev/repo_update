@@ -4,7 +4,18 @@ cd ../..
 
 repo sync -j8
 
-cd hardware/qcom/gps
+cd bionic
+git fetch http://android.googlesource.com/platform/bionic refs/changes/53/363153/1 && git cherry-pick FETCH_HEAD
+git fetch http://android.googlesource.com/platform/bionic refs/changes/92/368092/2 && git cherry-pick FETCH_HEAD
+git fetch http://android.googlesource.com/platform/bionic refs/changes/14/265214/21 && git cherry-pick FETCH_HEAD
+cd ../build/soong
+git fetch http://android.googlesource.com/platform/build/soong refs/changes/54/266354/28 && git cherry-pick FETCH_HEAD
+git fetch http://android.googlesource.com/platform/build/soong refs/changes/93/266393/16 && git cherry-pick FETCH_HEAD
+git fetch http://android.googlesource.com/platform/build/soong refs/changes/13/365413/2 && git cherry-pick FETCH_HEAD
+git fetch http://android.googlesource.com/platform/build/soong refs/changes/12/367312/2 && git cherry-pick FETCH_HEAD
+git fetch http://android.googlesource.com/platform/build/soong refs/changes/32/367332/3 && git cherry-pick FETCH_HEAD
+git fetch https://android.googlesource.com/platform/build/soong refs/changes/92/367392/2 && git cherry-pick FETCH_HEAD
+cd ../../hardware/qcom/gps
 git fetch http://android.googlesource.com/platform/hardware/qcom/gps refs/changes/37/464137/1 && git cherry-pick FETCH_HEAD
 cd ../audio
 git fetch http://android.googlesource.com/platform/hardware/qcom/audio refs/changes/91/294291/1 && git cherry-pick FETCH_HEAD
