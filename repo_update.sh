@@ -4,7 +4,11 @@ cd ../..
 
 repo sync -j8
 
-cd external/toybox
+cd bionic
+git cherry-pick 11f79bd765e644af9315465d821a2165fa4980ad
+git cherry-pick bee67141477bfb66610d47e959b5051cf9cde15f
+git fetch http://android.googlesource.com/platform/bionic refs/changes/90/497890/1 && git cherry-pick FETCH_HEAD
+cd ../external/toybox
 git fetch http://android.googlesource.com/platform/external/toybox refs/changes/74/265074/1 && git cherry-pick FETCH_HEAD
 git cherry-pick d3e8dd1bf56afc2277960472a46907d419e4b3da
 git cherry-pick 1c028ca33dc059a9d8f18daafcd77b5950268f41
