@@ -8,6 +8,7 @@ cd bionic
 git fetch http://android.googlesource.com/platform/bionic refs/changes/50/234150/1 && git cherry-pick FETCH_HEAD
 git fetch http://android.googlesource.com/platform/bionic refs/changes/53/236953/1 && git cherry-pick FETCH_HEAD
 git fetch http://android.googlesource.com/platform/bionic refs/changes/90/497890/1 && git cherry-pick FETCH_HEAD
+git fetch http://android.googlesource.com/platform/bionic refs/changes/01/503201/1 && git cherry-pick FETCH_HEAD
 cd ../bootable/recovery
 git cherry-pick 35fff61b1c0d736d090a1cd1bb4e99141cc88ad8
 git cherry-pick d00f5eb63a8e4690f9bef1e943d539d052444d9b
