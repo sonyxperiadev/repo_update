@@ -2,7 +2,7 @@ cd .repo/local_manifests
 git pull
 cd ../..
 
-repo sync -j8
+repo sync -j8 --current-branch --no-clone-bundle --no-tags
 
 cd bionic
 git fetch http://android.googlesource.com/platform/bionic refs/changes/50/234150/1 && git cherry-pick FETCH_HEAD
