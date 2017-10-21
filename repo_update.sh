@@ -17,6 +17,9 @@ git fetch http://android.googlesource.com/platform/build/soong refs/changes/13/3
 git fetch http://android.googlesource.com/platform/build/soong refs/changes/12/367312/2 && git cherry-pick FETCH_HEAD
 git fetch http://android.googlesource.com/platform/build/soong refs/changes/32/367332/3 && git cherry-pick FETCH_HEAD
 git fetch http://android.googlesource.com/platform/build/soong refs/changes/92/367392/2 && git cherry-pick FETCH_HEAD
+cd ../../bootable/recovery
+git cherry-pick 846012fc444e6076dabf874ed8cbdab358c2e0fb
+git fetch http://android.googlesource.com/platform/bootable/recovery refs/changes/35/517735/2 && git cherry-pick FETCH_HEAD
 cd ../../external/wpa_supplicant_8
 git fetch http://android.googlesource.com/platform/external/wpa_supplicant_8 refs/changes/00/512300/1 && git cherry-pick FETCH_HEAD
 git fetch http://android.googlesource.com/platform/external/wpa_supplicant_8 refs/changes/01/512301/1 && git cherry-pick FETCH_HEAD
