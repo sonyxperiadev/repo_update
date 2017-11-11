@@ -68,6 +68,7 @@ pushd $ANDROOT/hardware/qcom/audio
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/audio"
 git fetch $LINK refs/changes/91/294291/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/86/333386/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/56/535256/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/media
