@@ -117,6 +117,7 @@ git cherry-pick 565ba02b89b64deb8bf7232ac2c2a38b01f63523
 git cherry-pick 3f0250c3cc84b2480ef70d51343204eecbe84532
 git fetch $LINK refs/changes/52/269652/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/12/373812/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/75/537175/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/system/extras
