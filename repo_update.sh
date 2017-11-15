@@ -34,6 +34,7 @@ pushd $ANDROOT/bootable/recovery
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/bootable/recovery"
 git cherry-pick 35fff61b1c0d736d090a1cd1bb4e99141cc88ad8
 git cherry-pick d00f5eb63a8e4690f9bef1e943d539d052444d9b
+git $LINK refs/changes/15/538015/2 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/external/toybox
