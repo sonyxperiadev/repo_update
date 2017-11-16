@@ -126,6 +126,11 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/extras"
 git cherry-pick c71eaf37486bed9163ad528f51de29dd56b34fd2
 popd
 
+pushd $ANDROOT/packages/apps/Camera2
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/packages/apps/Camera2"
+git cherry-pick 8b17de0f4321fd981da98c64ad8a379ed6c0432a
+popd
+
 pushd $ANDROOT/packages/apps/Music
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/packages/apps/Music"
 git cherry-pick 6036ce6127022880a3d9c99bd15db4c968f3e6a3
