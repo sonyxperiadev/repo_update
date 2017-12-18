@@ -24,21 +24,8 @@ repo sync -j8
 
 pushd $ANDROOT/bionic
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/bionic"
-git fetch $LINK refs/changes/53/363153/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/92/368092/2 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/14/265214/21 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/90/497890/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/91/497891/2 && git cherry-pick FETCH_HEAD
-popd
-
-pushd $ANDROOT/build/soong
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/build/soong"
-git fetch $LINK refs/changes/54/266354/28 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/93/266393/16 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/13/365413/2 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/12/367312/2 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/32/367332/3 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/92/367392/2 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/bootable/recovery
