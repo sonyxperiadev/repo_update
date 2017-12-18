@@ -59,7 +59,7 @@ popd
 
 pushd $ANDROOT/hardware/qcom/bt
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bt"
-git fetch $LINK refs/changes/17/478117/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/84/573184/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/system/core
