@@ -47,18 +47,6 @@ git cherry-pick 846012fc444e6076dabf874ed8cbdab358c2e0fb
 git fetch $LINK refs/changes/35/517735/2 && git cherry-pick FETCH_HEAD
 popd
 
-pushd $ANDROOT/external/wpa_supplicant_8
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/external/wpa_supplicant_8"
-git fetch $LINK refs/changes/00/512300/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/01/512301/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/02/512302/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/03/512303/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/04/512304/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/05/512305/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/06/512306/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/07/512307/1 && git cherry-pick FETCH_HEAD
-popd
-
 pushd $ANDROOT/hardware/qcom/gps
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
 git fetch $LINK refs/changes/37/464137/1 && git cherry-pick FETCH_HEAD
