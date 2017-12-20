@@ -24,8 +24,8 @@ repo sync -j8
 
 pushd $ANDROOT/bionic
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/bionic"
-git fetch $LINK refs/changes/90/497890/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/91/497891/2 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/59/555059/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/22/553222/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/bootable/recovery
