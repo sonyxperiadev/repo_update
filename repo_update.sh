@@ -20,7 +20,7 @@ pushd $ANDROOT/.repo/local_manifests
 git pull
 popd
 
-repo sync -j8
+repo sync -j8 --current-branch --no-clone-bundle --no-tags
 
 pushd $ANDROOT/bionic
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/bionic"
