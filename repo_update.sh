@@ -44,6 +44,7 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/audio"
 git fetch $LINK refs/changes/91/294291/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/63/573163/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/56/535256/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/43/576643/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/media
@@ -55,6 +56,7 @@ pushd $ANDROOT/hardware/qcom/display
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/display"
 git fetch $LINK refs/changes/35/437235/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/83/573183/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/42/576642/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/bt
@@ -65,6 +67,7 @@ popd
 pushd $ANDROOT/system/core
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/core"
 git fetch $LINK refs/changes/21/553221/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/41/501741/2 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/frameworks/av
