@@ -63,7 +63,6 @@ popd
 
 pushd $ANDROOT/hardware/qcom/media
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/media"
-git fetch $LINK refs/changes/39/422439/2 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/55/522855/1 && git cherry-pick FETCH_HEAD
 popd
 
