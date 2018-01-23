@@ -82,7 +82,7 @@ pushd $ANDROOT/system/core
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/core"
 git fetch $LINK refs/changes/37/469437/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/92/497892/2 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/75/537175/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/41/501741/2 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/frameworks/av
