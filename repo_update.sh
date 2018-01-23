@@ -79,6 +79,7 @@ popd
 
 pushd $ANDROOT/system/core
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/core"
+git revert --no-edit 7f386dcab98b4a2827b5ffe29d7d3de7637841c0
 git fetch $LINK refs/changes/37/469437/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/92/497892/2 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/41/501741/2 && git cherry-pick FETCH_HEAD
