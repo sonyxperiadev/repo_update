@@ -45,6 +45,11 @@ git cherry-pick 1c028ca33dc059a9d8f18daafcd77b5950268f41
 git cherry-pick cb49c305e3c78179b19d6f174ae73309544292b8
 popd
 
+pushd $ANDROOT/external/iproute2
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/external/iproute2"
+git cherry-pick 04cd308001d732a1c8e5d244daba37c56a4641b0
+popd
+
 pushd $ANDROOT/external/libnfc-nci
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/external/libnfc-nci"
 git fetch $LINK refs/changes/52/371052/1 && git cherry-pick FETCH_HEAD
@@ -124,6 +129,12 @@ popd
 pushd $ANDROOT/system/extras
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/extras"
 git cherry-pick c71eaf37486bed9163ad528f51de29dd56b34fd2
+popd
+
+pushd $ANDROOT/system/netd
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/netd"
+git cherry-pick 2b078678aafceeefea6a70e96ab8ddefe515d027
+git cherry-pick 882e467ff7b83de868fa0b9a9beb9036bf14aede
 popd
 
 pushd $ANDROOT/packages/apps/Camera2
