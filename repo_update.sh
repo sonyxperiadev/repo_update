@@ -70,7 +70,6 @@ git cherry-pick 0cfc50a503fb058011b7fef517488f6df4c419e5
 git cherry-pick 8a8deaa00035aa29968201eadbc9fe32eb5ad675
 git cherry-pick 65dba39450a26f659fc6a14c1cbb2003681972ba
 git fetch $LINK refs/changes/91/294291/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/35/274235/9 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/86/333386/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/55/535255/1 && git cherry-pick FETCH_HEAD
 popd
