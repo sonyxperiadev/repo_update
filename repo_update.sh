@@ -30,7 +30,7 @@ popd
 
 pushd $ANDROOT/bootable/recovery
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/bootable/recovery"
-git cherry-pick 846012fc444e6076dabf874ed8cbdab358c2e0fb
+git fetch $LINK refs/changes/52/496452/2 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/35/517735/2 && git cherry-pick FETCH_HEAD
 popd
 
