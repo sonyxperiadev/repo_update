@@ -50,6 +50,8 @@ git fetch $LINK refs/changes/91/294291/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/63/573163/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/56/535256/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/43/576643/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/41/602841/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/42/602842/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/media
@@ -73,7 +75,7 @@ pushd $ANDROOT/system/core
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/core"
 git fetch $LINK refs/changes/21/553221/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/41/501741/2 && git cherry-pick FETCH_HEAD
-git revert 1d540dd0f44c1c7d40878f6a7bb447e85e6207ad
+git revert --no-edit 1d540dd0f44c1c7d40878f6a7bb447e85e6207ad
 git fetch $LINK refs/changes/37/469437/1 && git cherry-pick FETCH_HEAD
 popd
 
