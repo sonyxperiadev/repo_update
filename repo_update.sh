@@ -106,6 +106,10 @@ popd
 
 pushd $ANDROOT/hardware/qcom/gps
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
+git cherry-pick bc2807add2c6d891258fdf5794c38ee2429a7b3e
+git cherry-pick 63f8eb733a0dd9b2c3a0ae282e5c8b1adde7ef16
+git cherry-pick c5b4bd379426c4f32a7afcacf08ee92271f7a4ba
+git cherry-pick c2fbb41f698d238de6a6a66111e700a73823936e
 git cherry-pick 02f13da8e1d303f5b7ccbe21633e6d0cb6331868
 git cherry-pick 4eda8e1eabead3a9115bdd9cedd7e336ed431dbe
 popd
