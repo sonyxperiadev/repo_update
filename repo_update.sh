@@ -85,7 +85,18 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/av"
 git fetch $LINK refs/changes/92/384692/2 && git cherry-pick FETCH_HEAD
 popd
 
+pushd $ANDROOT/packages/apps/Nfc
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/packages/apps/Nfc"
+git fetch $LINK refs/changes/62/666362/1 && git cherry-pick FETCH_HEAD
+popd
+
 pushd $ANDROOT/packages/inputmethods/LatinIME
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/packages/inputmethods/LatinIME"
 git fetch $LINK refs/changes/78/469478/1 && git cherry-pick FETCH_HEAD
+popd
+
+pushd $ANDROOT/system/nfc
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/nfc"
+git fetch $LINK refs/changes/17/515517/10 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/15/533315/4 && git cherry-pick FETCH_HEAD
 popd
