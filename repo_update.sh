@@ -19,11 +19,11 @@ popd () {
     command popd "$@" > /dev/null
 }
 
-pushd $ANDROOT/.repo/local_manifests
-git pull
-popd
-
 if [ "$SKIP_SYNC" != "TRUE" ]; then
+    pushd $ANDROOT/.repo/local_manifests
+    git pull
+    popd
+
     repo sync -j8 --current-branch --no-tags
 fi
 
