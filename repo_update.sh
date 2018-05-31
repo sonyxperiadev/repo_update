@@ -33,12 +33,32 @@ popd
 
 pushd $ANDROOT/build/soong
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/build/soong"
-git fetch $LINK refs/changes/54/266354/28 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/93/266393/16 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/13/365413/2 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/12/367312/2 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/32/367332/3 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/92/367392/2 && git cherry-pick FETCH_HEAD
+git revert --no-edit 8cede07e698cc1a15257a6b5dd653488e2bbf49e
+git revert --no-edit 0f1bd9d3d73f1d1a673c23d5b180172c8c4605db
+git revert --no-edit e54d01029b8e2743254740a7a2ca167c6647e5d2
+git revert --no-edit 10b40b087cb9b7ead39da1e9fc6b7a85ecb4a901
+git revert --no-edit 756b1c2343ed019ad59868c81491ea1eb7d42c57
+git revert --no-edit 95421a4a776c5119d7d0729dd2efe05568d19f2b
+git revert --no-edit 8ecfbadcc3fb1d1bd29a36e4e9dd6417399adaf3
+git revert --no-edit 0417699bbbd4151711e09925f3c72cbf3b8e81a5
+git cherry-pick ae4fc1840653fd5598f81d33ac33a00d09b94607
+git cherry-pick ac01ff5447518986f778be5b5c5a7bb0bf354e9c
+git cherry-pick 5df73d02ce2ccf373029ba082d5a1fac82dfa33e
+git cherry-pick b916b80bf301545595a8263776180c1db90a9ccc
+git cherry-pick 1783a2f3e87ce191d5a22b0125aab6111a562a6c
+git cherry-pick fff256f817213482c6b04ede2882aa9952d9948b
+git cherry-pick 5cfd70952954ed5cffa270d9733df802123b1ea0
+git cherry-pick 0906f17f7e8bf0e76cb8511669e8fc8d5f6f3794
+git cherry-pick fa7e8af921afae02be39957c779bb11aa59f3699
+git cherry-pick 1d9aa26d445cd5407aea0831e6b67fb37dfc1d05
+git cherry-pick 5916657a96ce9fe90d2d2959472a8398f9ed7e58
+git cherry-pick 41f5d58cd5cb4ee5021ab1ad574342a1d19c5d3e
+git cherry-pick 8ecfbadcc3fb1d1bd29a36e4e9dd6417399adaf3
+git cherry-pick 95421a4a776c5119d7d0729dd2efe05568d19f2b
+git cherry-pick 756b1c2343ed019ad59868c81491ea1eb7d42c57
+git cherry-pick 10b40b087cb9b7ead39da1e9fc6b7a85ecb4a901
+git cherry-pick 0f1bd9d3d73f1d1a673c23d5b180172c8c4605db
+git cherry-pick 8cede07e698cc1a15257a6b5dd653488e2bbf49e
 popd
 
 pushd $ANDROOT/bootable/recovery
