@@ -59,6 +59,7 @@ git cherry-pick 756b1c2343ed019ad59868c81491ea1eb7d42c57
 git cherry-pick 10b40b087cb9b7ead39da1e9fc6b7a85ecb4a901
 git cherry-pick 0f1bd9d3d73f1d1a673c23d5b180172c8c4605db
 git cherry-pick 8cede07e698cc1a15257a6b5dd653488e2bbf49e
+git cherry-pick e28f4e2acfcca00766080d294daa75ae2efb5853
 popd
 
 pushd $ANDROOT/bootable/recovery
