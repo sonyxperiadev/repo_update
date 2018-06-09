@@ -107,3 +107,8 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/nfc"
 git fetch $LINK refs/changes/17/515517/10 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/15/533315/4 && git cherry-pick FETCH_HEAD
 popd
+
+pushd $ANDROOT/system/vold
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/vold"
+git fetch $LINK refs/changes/71/347671/2 && git cherry-pick FETCH_HEAD
+popd
