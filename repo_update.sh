@@ -37,6 +37,11 @@ git cherry-pick d00f5eb63a8e4690f9bef1e943d539d052444d9b
 git fetch $LINK refs/changes/15/538015/2 && git cherry-pick FETCH_HEAD
 popd
 
+pushd $ANDROOT/build
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/build"
+git cherry-pick 47ec5ab561bd979560bde402201268486ce9cc34
+popd
+
 pushd $ANDROOT/external/toybox
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/external/toybox"
 git fetch $LINK refs/changes/74/265074/1 && git cherry-pick FETCH_HEAD
