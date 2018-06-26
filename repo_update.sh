@@ -47,17 +47,21 @@ popd
 
 pushd $ANDROOT/hardware/qcom/audio
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/audio"
-git fetch $LINK refs/changes/91/294291/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/63/573163/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/08/708808/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/09/708809/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/56/535256/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/43/576643/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/41/602841/3 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/42/602842/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/41/602841/4 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/42/602842/2 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/10/708810/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/media
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/media"
 git fetch $LINK refs/changes/55/522855/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/15/708815/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/16/708816/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/17/708817/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/display
@@ -66,11 +70,19 @@ git fetch $LINK refs/changes/35/437235/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/42/576642/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/38/602838/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/79/645379/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/12/708812/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/13/708813/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/14/708814/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/bt
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bt"
 git fetch $LINK refs/changes/84/573184/1 && git cherry-pick FETCH_HEAD
+popd
+
+pushd $ANDROOT/hardware/qcom/bootctrl
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
+git fetch $LINK refs/changes/11/708811/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/system/core
