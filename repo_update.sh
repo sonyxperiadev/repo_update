@@ -47,6 +47,11 @@ git cherry-pick 846012fc444e6076dabf874ed8cbdab358c2e0fb
 git fetch $LINK refs/changes/35/517735/2 && git cherry-pick FETCH_HEAD
 popd
 
+pushd $ANDROOT/build
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/build"
+git cherry-pick 2b8f489e304e1afd7ae607000d5e7022328293db
+popd
+
 pushd $ANDROOT/external/wpa_supplicant_8
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/external/wpa_supplicant_8"
 git fetch $LINK refs/changes/00/512300/1 && git cherry-pick FETCH_HEAD
