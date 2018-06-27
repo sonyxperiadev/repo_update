@@ -35,6 +35,11 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/bootable/recovery"
 git fetch $LINK refs/changes/15/538015/2 && git cherry-pick FETCH_HEAD
 popd
 
+pushd $ANDROOT/build
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/build"
+git cherry-pick 2b8f489e304e1afd7ae607000d5e7022328293db
+popd
+
 pushd $ANDROOT/external/toybox
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/external/toybox"
 git fetch $LINK refs/changes/74/265074/1 && git cherry-pick FETCH_HEAD
