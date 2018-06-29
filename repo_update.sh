@@ -40,6 +40,7 @@ popd
 pushd $ANDROOT/build
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/build"
 git cherry-pick 47ec5ab561bd979560bde402201268486ce9cc34
+git cherry-pick 2b8f489e304e1afd7ae607000d5e7022328293db
 popd
 
 pushd $ANDROOT/external/toybox
