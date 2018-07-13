@@ -40,6 +40,14 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
 git fetch $LINK refs/changes/19/642919/5 && git cherry-pick FETCH_HEAD
 popd
 
+pushd $ANDROOT/frameworks/native
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/native"
+git revert --no-edit 6cf286dd544e0204e0e6bbc96bfcbb36467f25df
+git cherry-pick 687a0d19345bb5fc669e594397370c76172362e1
+git cherry-pick d65d1f72eac74a63d3e4a98416928729c27b5ec6
+git cherry-pick f0d877ca65f3fefa5c37e2d9c6a09a9991a3e434
+popd
+
 pushd $ANDROOT/hardware/qcom/gps
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
 git fetch $LINK refs/changes/37/464137/1 && git cherry-pick FETCH_HEAD
