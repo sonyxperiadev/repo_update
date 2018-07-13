@@ -75,6 +75,7 @@ git fetch $LINK refs/changes/79/645379/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/12/708812/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/13/708813/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/14/708814/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/09/716909/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/bt
