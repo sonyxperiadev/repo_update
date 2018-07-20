@@ -30,11 +30,6 @@ git fetch $LINK refs/changes/59/555059/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/22/553222/1 && git cherry-pick FETCH_HEAD
 popd
 
-pushd $ANDROOT/bootable/recovery
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/bootable/recovery"
-git fetch $LINK refs/changes/52/496452/2 && git cherry-pick FETCH_HEAD
-popd
-
 pushd $ANDROOT/frameworks/base
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
 git fetch $LINK refs/changes/19/642919/5 && git cherry-pick FETCH_HEAD
