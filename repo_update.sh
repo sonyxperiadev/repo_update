@@ -99,6 +99,7 @@ popd
 pushd $ANDROOT/frameworks/base
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
 git fetch $LINK refs/changes/62/684362/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/70/671870/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/packages/apps/Nfc
