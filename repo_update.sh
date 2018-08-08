@@ -31,7 +31,7 @@ popd
 
 pushd $ANDROOT/hardware/qcom/gps
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
-git fetch $LINK refs/changes/37/464137/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/47/728147/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/audio
