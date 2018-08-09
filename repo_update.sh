@@ -36,13 +36,11 @@ popd
 
 pushd $ANDROOT/hardware/qcom/audio
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/audio"
-git fetch $LINK refs/changes/08/708808/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/09/708809/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/56/535256/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/43/576643/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/41/602841/4 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/42/602842/2 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/10/708810/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/49/728149/5 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/50/728150/4 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/51/728151/3 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/52/728152/4 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/53/728153/3 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/media
