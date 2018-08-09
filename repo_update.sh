@@ -73,7 +73,7 @@ popd
 
 pushd $ANDROOT/hardware/qcom/bootctrl
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
-git fetch $LINK refs/changes/11/708811/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/70/728570/2 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/system/core
