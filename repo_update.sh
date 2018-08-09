@@ -45,12 +45,13 @@ popd
 
 pushd $ANDROOT/hardware/qcom/media
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/media"
-git fetch $LINK refs/changes/55/522855/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/15/708815/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/16/708816/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/17/708817/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/42/713242/2 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/43/713243/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/39/728339/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/42/728342/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/43/728343/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/44/728344/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/65/728565/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/66/728566/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/67/728567/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/display
