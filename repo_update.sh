@@ -24,11 +24,6 @@ if [ "$SKIP_SYNC" != "TRUE" ]; then
     repo sync -j8 --current-branch --no-tags
 fi
 
-pushd $ANDROOT/frameworks/base
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
-git fetch $LINK refs/changes/15/727815/1 && git cherry-pick FETCH_HEAD
-popd
-
 pushd $ANDROOT/hardware/qcom/gps
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
 git fetch $LINK refs/changes/47/728147/1 && git cherry-pick FETCH_HEAD
@@ -86,6 +81,7 @@ popd
 
 pushd $ANDROOT/frameworks/base
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
+git fetch $LINK refs/changes/15/727815/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/75/728575/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/05/728605/1 && git cherry-pick FETCH_HEAD
 popd
