@@ -84,11 +84,6 @@ git revert --no-edit 1d540dd0f44c1c7d40878f6a7bb447e85e6207ad
 git fetch $LINK refs/changes/37/469437/1 && git cherry-pick FETCH_HEAD
 popd
 
-pushd $ANDROOT/frameworks/av
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/av"
-git fetch $LINK refs/changes/92/384692/2 && git cherry-pick FETCH_HEAD
-popd
-
 pushd $ANDROOT/frameworks/base
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
 git fetch $LINK refs/changes/62/684362/1 && git cherry-pick FETCH_HEAD
