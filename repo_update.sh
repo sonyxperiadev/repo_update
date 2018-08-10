@@ -86,9 +86,3 @@ git fetch $LINK refs/changes/15/727815/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/75/728575/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/05/728605/1 && git cherry-pick FETCH_HEAD
 popd
-
-pushd $ANDROOT/system/nfc
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/nfc"
-git fetch $LINK refs/changes/17/515517/10 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/15/533315/4 && git cherry-pick FETCH_HEAD
-popd
