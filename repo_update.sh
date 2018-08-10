@@ -87,11 +87,6 @@ git fetch $LINK refs/changes/75/728575/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/05/728605/1 && git cherry-pick FETCH_HEAD
 popd
 
-pushd $ANDROOT/packages/inputmethods/LatinIME
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/packages/inputmethods/LatinIME"
-git fetch $LINK refs/changes/78/469478/1 && git cherry-pick FETCH_HEAD
-popd
-
 pushd $ANDROOT/system/nfc
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/nfc"
 git fetch $LINK refs/changes/17/515517/10 && git cherry-pick FETCH_HEAD
