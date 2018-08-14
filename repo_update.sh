@@ -26,6 +26,7 @@ fi
 
 pushd $ANDROOT/hardware/qcom/gps
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
+git revert --no-edit f85d0932e27d673669cebf0776ba8a647a68905d
 git fetch $LINK refs/changes/47/728147/1 && git cherry-pick FETCH_HEAD
 popd
 
