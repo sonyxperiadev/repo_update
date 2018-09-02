@@ -77,6 +77,12 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl
 git fetch $LINK refs/changes/70/728570/2 && git cherry-pick FETCH_HEAD
 popd
 
+pushd $ANDROOT/hardware/nxp/nfc
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/nxp/nfc"
+git fetch $LINK refs/changes/61/744361/2 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/62/744362/5 && git cherry-pick FETCH_HEAD
+popd
+
 pushd $ANDROOT/frameworks/base
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
 git fetch $LINK refs/changes/15/727815/1 && git cherry-pick FETCH_HEAD
