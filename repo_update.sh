@@ -89,3 +89,8 @@ git fetch $LINK refs/changes/15/727815/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/75/728575/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/05/728605/1 && git cherry-pick FETCH_HEAD
 popd
+
+pushd $ANDROOT/system/core
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/core"
+git fetch $LINK refs/changes/01/741001/2 && git cherry-pick FETCH_HEAD
+popd
