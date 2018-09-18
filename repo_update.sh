@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# exit script immediately if a command fails
+set -e
+
 # Some people require insecure proxies
 HTTP=https
 if [ "$INSECURE_PROXY" = "TRUE" ]; then
@@ -16,11 +19,11 @@ popd () {
     command popd "$@" > /dev/null
 }
 
-pushd $ANDROOT/.repo/local_manifests
-git pull
-popd
-
 if [ "$SKIP_SYNC" != "TRUE" ]; then
+    pushd $ANDROOT/.repo/local_manifests
+    git pull
+    popd
+
     repo sync -j8 --current-branch --no-tags
 fi
 
@@ -94,3 +97,9 @@ pushd $ANDROOT/system/core
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/core"
 git fetch $LINK refs/changes/01/741001/2 && git cherry-pick FETCH_HEAD
 popd
+
+# because "set -e" is used above, when we get to this point, we know
+# all patches were applied successfully.
+echo "+++ all patches applied successfully! +++"
+
+set +e
