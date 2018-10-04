@@ -43,6 +43,7 @@ git fetch $LINK refs/changes/50/728150/4 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/51/728151/3 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/52/728152/4 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/53/728153/3 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/14/777714/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/media
