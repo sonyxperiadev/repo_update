@@ -30,10 +30,8 @@ fi
 pushd $ANDROOT/hardware/qcom/gps
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
 git revert --no-edit f85d0932e27d673669cebf0776ba8a647a68905d
-git fetch $LINK refs/changes/47/728147/2 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/05/731505/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/06/731506/1 && git cherry-pick FETCH_HEAD
-git fetch $LINK refs/changes/07/731507/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/37/464137/2 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/16/777716/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/audio
@@ -43,6 +41,7 @@ git fetch $LINK refs/changes/50/728150/4 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/51/728151/3 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/52/728152/4 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/53/728153/3 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/14/777714/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/media
