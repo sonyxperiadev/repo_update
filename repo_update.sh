@@ -63,6 +63,7 @@ popd
 
 pushd $ANDROOT/hardware/qcom/bootctrl
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
+git revert --no-edit a8e07aecb24898d7d2b49cb785b0c193a4b134b4
 git fetch $LINK refs/changes/70/728570/2 && git cherry-pick FETCH_HEAD
 popd
 
