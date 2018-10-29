@@ -40,6 +40,11 @@ git revert --no-edit f475797d3c031ae97a393fa3e899034836fe7ba6
 git revert --no-edit 35a95e0a9bc9aeab1bb1847180babda2da5fbf90
 popd
 
+pushd $ANDROOT/hardware/qcom/sdm845/gps
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/gps"
+git fetch $LINK refs/changes/39/804439/1 && git cherry-pick FETCH_HEAD
+popd
+
 pushd $ANDROOT/hardware/qcom/audio
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/audio"
 git fetch $LINK refs/changes/49/728149/5 && git cherry-pick FETCH_HEAD
