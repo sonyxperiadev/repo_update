@@ -29,7 +29,14 @@ fi
 
 pushd $ANDROOT/hardware/qcom/gps
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
-git fetch $LINK refs/changes/47/728147/2 && git cherry-pick FETCH_HEAD
+git revert --no-edit 484979c524067125b56d59afb102003ff48e3702
+git revert --no-edit f475797d3c031ae97a393fa3e899034836fe7ba6
+git revert --no-edit 35a95e0a9bc9aeab1bb1847180babda2da5fbf90
+popd
+
+pushd $ANDROOT/hardware/qcom/gps
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/gps"
+git fetch $LINK refs/changes/39/804439/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/audio
