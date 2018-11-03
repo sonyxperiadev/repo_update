@@ -89,6 +89,12 @@ git fetch $LINK refs/changes/42/713242/2 && git cherry-pick FETCH_HEAD
 # msm8996: fix build when prop blobs are not prezent
 # Change-Id: I86baddb52292e65ee4a5d8dae6253920b9c0629b
 git fetch $LINK refs/changes/43/713243/2 && git cherry-pick FETCH_HEAD
+# msm8998: mm-video-v4l2: enable compilation for both 3.18 kernel and 4.9 kernel
+# Change-Id: If1eb2575dd80a1e6684c84e573baf78ae698bb20
+git fetch $LINK refs/changes/55/813054/1 && git cherry-pick FETCH_HEAD
+# msm8998: mm-video-v4l2: Renaming the AU-Delimiter params/extens
+# Change-Id: I3feccfbb06e4e237a601a355ab2f2573a165ed3b
+git fetch $LINK refs/changes/55/813055/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/display
