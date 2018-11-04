@@ -74,7 +74,11 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/media"
 # msm8998: vdec: Add missing ifdefs for UBWC on DPB buffer decision
 # Change-Id: I76131db5272b97016679c5bc0bf6ae099167cd03
 git fetch $LINK refs/changes/39/728339/1 && git cherry-pick FETCH_HEAD
+# msm8998: mm-video-v4l2: enable compilation for both 3.18 kernel and 4.9 kernel
+# Change-Id: If1eb2575dd80a1e6684c84e573baf78ae698bb20
 git fetch $LINK refs/changes/54/813054/1 && git cherry-pick FETCH_HEAD
+# msm8998: mm-video-v4l2: Renaming the AU-Delimiter params/extens
+# Change-Id: I3feccfbb06e4e237a601a355ab2f2573a165ed3b
 git fetch $LINK refs/changes/55/813055/1 && git cherry-pick FETCH_HEAD
 popd
 
