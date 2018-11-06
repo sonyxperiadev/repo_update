@@ -49,6 +49,9 @@ popd
 
 pushd $ANDROOT/hardware/qcom/audio
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/audio"
+# hal: enable audio_hw flag for sdm710 platform
+# Change-Id: I98fc64fc972dd073cde394aa59dafbde892ba06a
+git revert --no-edit e56cd4bc673e7068d59803b9ac02f660e6bfd14e
 # Add msm8976 tasha sound card detection to msm8916 HAL
 # Change-Id: I9ac11e781cf627fa5efe586c96e48bfd04f32485
 git fetch $LINK refs/changes/49/728149/5 && git cherry-pick FETCH_HEAD
