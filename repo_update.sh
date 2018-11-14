@@ -142,6 +142,9 @@ git fetch $LINK refs/changes/75/728575/1 && git cherry-pick FETCH_HEAD
 # Fix bug Device that can't support adoptable storage cannot read the sdcard.
 # Change-Id: I7afe5078650fe646e79fced7456f90d4af8a449a
 git fetch $LINK refs/changes/05/728605/1 && git cherry-pick FETCH_HEAD
+# SystemUI: Implement burn-in protection for status-bar/nav-bar items
+# Change-Id: I828dbd4029b4d3b1f2c86b682a03642e3f9aeeb9
+git fetch $LINK refs/changes/40/824340/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/system/core
