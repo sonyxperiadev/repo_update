@@ -64,8 +64,8 @@ git fetch $LINK refs/changes/51/728151/3 && git cherry-pick FETCH_HEAD
 # hal: enable audio hal on sdm660
 # Change-Id: I0edd5fa2c67eb7a96a44e907060dcbb273e983ac
 git fetch $LINK refs/changes/52/728152/4 && git cherry-pick FETCH_HEAD
-# hal: msm8916: Fix for vndk compilation errors
-# Change-Id: Iffd8a3c00a2a1ad063e10c0ebf3ce9e88e3edea0
+# post_proc: Enable post processing for sdm660
+# Change-Id: I18b9cec56c6197b4465e8009c7e50aa95e111d32
 git fetch $LINK refs/changes/53/728153/3 && git cherry-pick FETCH_HEAD
 # hal: msm8916: Fix for vndk compilation errors
 # Change-Id: Iffd8a3c00a2a1ad063e10c0ebf3ce9e88e3edea0
