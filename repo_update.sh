@@ -85,6 +85,13 @@ git fetch $LINK refs/changes/54/813054/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/55/813055/1 && git cherry-pick FETCH_HEAD
 popd
 
+pushd $ANDROOT/hardware/qcom/media/sdm845
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/media"
+# Avoid missing dependency error for AOSP builds
+# Change-Id: I19aa7a79f60bfd1182b5846ed54bf0fbf4fe0419
+git fetch $LINK  refs/changes/80/832780/1 && git cherry-pick FETCH_HEAD
+popd
+
 pushd $ANDROOT/hardware/qcom/display
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/display"
 # sdm: core: Update the mixer, framebuffer and display properly
