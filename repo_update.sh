@@ -27,6 +27,12 @@ if [ "$SKIP_SYNC" != "TRUE" ]; then
     repo sync -j8 --current-branch --no-tags
 fi
 
+pushd $ANDROOT/hardware/interfaces
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/interfaces"
+# interfaces: Add basic USB HAL that reports no status change
+# Change-Id: I38bfe869f9b1b66db0e13249f65e438878d06eff
+git fetch $LINK refs/changes/60/833060/1 && git cherry-pick FETCH_HEAD
+
 pushd $ANDROOT/hardware/qcom/gps
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
 # gps: use TARGET_BOARD_AUTO to override qcom hals
