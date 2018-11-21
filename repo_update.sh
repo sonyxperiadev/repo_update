@@ -89,7 +89,10 @@ pushd $ANDROOT/hardware/qcom/media/sdm845
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/media"
 # Avoid missing dependency error for AOSP builds
 # Change-Id: I19aa7a79f60bfd1182b5846ed54bf0fbf4fe0419
-git fetch $LINK  refs/changes/80/832780/1 && git cherry-pick FETCH_HEAD
+git fetch $LINK refs/changes/80/832780/1 && git cherry-pick FETCH_HEAD
+# guard use of kernel sources
+# Change-Id: I9b8cd5200cdfcc5d5ada39e6158383e7da221ae7
+git fetch $LINK refs/changes/84/832784/1 && git cherry-pick FETCH_HEAD
 popd
 
 pushd $ANDROOT/hardware/qcom/display
