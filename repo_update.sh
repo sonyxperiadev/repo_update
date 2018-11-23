@@ -27,6 +27,14 @@ if [ "$SKIP_SYNC" != "TRUE" ]; then
     repo sync -j8 --current-branch --no-tags
 fi
 
+
+pushd $ANDROOT/hardware/qcom/data/ipacfg-mgr/sdm845
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/data/ipacfg-mgr"
+# guard use of kernel sources
+# Change-Id: Ie8e892c5a7cca28cc58cbead88a9796ebc80a9f8
+git fetch $LINK  refs/changes/23/834623/1 && git cherry-pick FETCH_HEAD
+popd
+
 pushd $ANDROOT/hardware/qcom/gps
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
 # gps: use TARGET_BOARD_AUTO to override qcom hals
