@@ -46,6 +46,8 @@ git revert --no-edit 484979c524067125b56d59afb102003ff48e3702
 git revert --no-edit f475797d3c031ae97a393fa3e899034836fe7ba6
 # Revert "FR 46082 - SUPL Network Setup Improvements"
 git revert --no-edit 35a95e0a9bc9aeab1bb1847180babda2da5fbf90
+# Revert "DO NOT MERGE: Revert "Revert "sdm845: Add libprocessgroup dependency to set_sched_policy users""
+git revert --no-edit db96236976a195bda833d821d584bc76ea4cdbae
 popd
 
 pushd $ANDROOT/hardware/qcom/gps
