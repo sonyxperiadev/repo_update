@@ -136,6 +136,9 @@ popd
 
 pushd $ANDROOT/hardware/qcom/bootctrl
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
+# bootcontrol: Add TARGET_USES_HARDWARE_QCOM_BOOTCTRL
+# Change-Id: I958bcf29da2ea5914ac503e9d209c75ce44f1e51
+git revert --no-edit f5db01c3b14d720f3d603cfb3b887d89c2b11b28
 # Android.mk: add sdm710
 # Change-Id: I82f2321d580cb2fdb15d2343e39abed5ccda50b1
 git revert --no-edit a8e07aecb24898d7d2b49cb785b0c193a4b134b4
