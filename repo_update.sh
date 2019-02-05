@@ -59,6 +59,9 @@ popd
 
 pushd $ANDROOT/hardware/qcom/audio
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/audio"
+# audio: add sm8150 into support platform list
+# Change-Id: Ic0e99aa9bd25790920f9cc13e42c0bd2de815fe6
+git revert --no-edit 07f96d11649ffe2af61f83b4c7f22d12b407e03f
 # hal: enable audio_hw flag for sdm710 platform
 # Change-Id: I98fc64fc972dd073cde394aa59dafbde892ba06a
 git revert --no-edit e56cd4bc673e7068d59803b9ac02f660e6bfd14e
