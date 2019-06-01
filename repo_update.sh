@@ -53,19 +53,17 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
 # gps: use TARGET_BOARD_AUTO to override qcom hals
 # Change-Id: I28898df1e8855347129039b5cb0d43975d3a5415
 apply_gerrit_cl_commit refs/changes/47/728147/2 147270f08ac33d737405afc555b3ddb6f1308336
-# Revert "Remove etc folder under hardware/qcom/gps"
-git revert --no-edit 484979c524067125b56d59afb102003ff48e3702
-# Revert "Handle updating the carrier configuration"
-git revert --no-edit f475797d3c031ae97a393fa3e899034836fe7ba6
-# Revert "FR 46082 - SUPL Network Setup Improvements"
-git revert --no-edit 35a95e0a9bc9aeab1bb1847180babda2da5fbf90
-# Revert "DO NOT MERGE: Revert "Revert "sdm845: Add libprocessgroup dependency to set_sched_policy users""
-git revert --no-edit db96236976a195bda833d821d584bc76ea4cdbae
 
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/gps"
-# gps: sdm845: gnss: use correct format specifier in log
-# Change-Id: I24ad0342d6d26f1c7fe2fcac451a71bbfba8bfe0
-apply_gerrit_cl_commit refs/changes/39/804439/1 c1bdb439aaf7ecddd9f499dce5c7b56ea458cce4
+# Revert "Handle updating the carrier configuration"
+# Change-Id: I071ddb4fba837393b99f156a27047f74bfd0ca00
+apply_gerrit_cl_commit refs/changes/24/975124/1 2b7b9bcb4744bf5c987a7aa4c59eaa5f6b5e1705
+# Revert "FR 46082 - SUPL Network Setup Improvements"
+# Change-Id: Iec3e5c78c907b78cf5145c3ba11e14e40bc04396
+apply_gerrit_cl_commit refs/changes/23/975123/2 9671b8fb206693eab38715b050f91e2c94d11f8b
+# sdm845: android/gnss: Fix format specifier in log
+# Change-Id: I223a192d7755826151ebc970d72cffea90179981
+apply_gerrit_cl_commit refs/changes/25/975125/1 f7f8750e60bcd0261648dfdb57eeeaefac87b777
 popd
 
 pushd $ANDROOT/hardware/qcom/audio
@@ -122,25 +120,6 @@ apply_gerrit_cl_commit refs/changes/80/832780/1 3a2fe3ec7974f9f1e9772d0009dc4df0
 apply_gerrit_cl_commit refs/changes/84/832784/1 07a63defb34cd0a18849d4488ef11a8793e6cf3b
 popd
 
-pushd $ANDROOT/hardware/qcom/display
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/display"
-# sdm: core: Update the mixer, framebuffer and display properly
-# Change-Id: I8e1324787e35f2c675f1c8580901fb3fadc8f3c9
-apply_gerrit_cl_commit refs/changes/09/729209/2 c62b4c1d5aeb39562d2241238082a73f39a7ea1b
-# hwc2: Do not treat color mode errors as fatal at init
-# Change-Id: I56926f320eb7719a22475793322d19244dd5d4d5
-apply_gerrit_cl_commit refs/changes/10/729210/1 ae41c6d8047767f2cd84f6d4e7ef36c653bbb8f5
-# msm8998: gralloc1: disable UBWC if video encoder client has no support
-# Change-Id: I1ff2489b0ce8fe36a801881b848873e591077402
-apply_gerrit_cl_commit refs/changes/11/729211/1 8dcf282bcec842ae633f43fc6dd1ecb397986d5c
-# color_manager: Update display color api libname
-# Change-Id: I3626975ddff8458c641dc60b3632581512f91b94
-apply_gerrit_cl_commit refs/changes/12/729212/1 977eaf6520b189100df7729644a062a2fd9a6bc4
-# msm8998: sdm: hwc2: Added property to disable skipping client color transform.
-# Change-Id: I5e2508b2de391007f93064fe5bd506dd62050fbc
-apply_gerrit_cl_commit refs/changes/13/729213/1 7f8016eb2f5b090847e70b69c08cae555add6e7f
-popd
-
 pushd $ANDROOT/hardware/qcom/bt
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bt"
 # bt: use TARGET_BOARD_AUTO to override qcom hals
@@ -148,27 +127,11 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bt"
 apply_gerrit_cl_commit refs/changes/69/728569/1 e0e30f0d46ef2ff5bcb707eaf47a596cb57b65af
 popd
 
-pushd $ANDROOT/hardware/qcom/bootctrl
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
-# bootcontrol: Add TARGET_USES_HARDWARE_QCOM_BOOTCTRL
-# Change-Id: I958bcf29da2ea5914ac503e9d209c75ce44f1e51
-git revert --no-edit f5db01c3b14d720f3d603cfb3b887d89c2b11b28
-# Android.mk: add sdm710
-# Change-Id: I82f2321d580cb2fdb15d2343e39abed5ccda50b1
-git revert --no-edit a8e07aecb24898d7d2b49cb785b0c193a4b134b4
-# Replace hardcoded build barrier with a generic one
-# Change-Id: I34ee90a2818ad23cc6b9233bdde126a0965fae0d
-apply_gerrit_cl_commit refs/changes/70/728570/2 0ae34c3a19fb0a1a0bd9775199692d550af4b8f5
-popd
-
 pushd $ANDROOT/hardware/nxp/nfc
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/nxp/nfc"
-# hardware: nxp: Restore pn548 support
-# Change-Id: Iafb0d31626d0a8b9faf22f5307ac8b0a5a9ded37
-apply_gerrit_cl_commit refs/changes/61/744361/2 e3f2e87aaf9a24d61e3e3e350854d6da360696d8
-# hardware: nxp: Restore pn547 support
-# Change-Id: I498367f676f8c8d7fc13e849509d0d8a05ec89a8
-apply_gerrit_cl_commit refs/changes/62/744362/5 6629cfdaf4c41f09b69874e5d0c40552c197a517
+# Add pn547, pn548 support
+# Change-Id: Ia41714392860fbffc037ee9957a40499399d6560
+apply_gerrit_cl_commit refs/changes/24/974924/1 708c4d124ae6afcfe533f5ba90b56736a292b9ff
 popd
 
 pushd $ANDROOT/frameworks/base
@@ -185,13 +148,6 @@ apply_gerrit_cl_commit refs/changes/05/728605/1 b6f563436ca1b1496bf6026453e5b805
 # SystemUI: Implement burn-in protection for status-bar/nav-bar items
 # Change-Id: I828dbd4029b4d3b1f2c86b682a03642e3f9aeeb9
 apply_gerrit_cl_commit refs/changes/40/824340/1 6272c6244d2b007eb6ad08fb682d77612555d1ac
-popd
-
-pushd $ANDROOT/system/core
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/core"
-# Show bootanimation after decrypt
-# Change-Id: I355ccdbb2e2f27d897e2e0ee00f9300ef38ede03
-apply_gerrit_cl_commit refs/changes/01/741001/2 f32c20174349c058b20d3819802ed8aa8277c72d
 popd
 
 # because "set -e" is used above, when we get to this point, we know
