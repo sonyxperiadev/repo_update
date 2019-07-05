@@ -176,13 +176,6 @@ git fetch $LINK refs/changes/05/728605/1 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/40/824340/1 && git cherry-pick FETCH_HEAD
 popd
 
-pushd $ANDROOT/system/core
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/core"
-# Show bootanimation after decrypt
-# Change-Id: I355ccdbb2e2f27d897e2e0ee00f9300ef38ede03
-git fetch $LINK refs/changes/01/741001/2 && git cherry-pick FETCH_HEAD
-popd
-
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
