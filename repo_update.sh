@@ -117,25 +117,6 @@ apply_gerrit_cl_commit refs/changes/80/832780/1 3a2fe3ec7974f9f1e9772d0009dc4df0
 apply_gerrit_cl_commit refs/changes/84/832784/1 07a63defb34cd0a18849d4488ef11a8793e6cf3b
 popd
 
-pushd $ANDROOT/hardware/qcom/display
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/display"
-# sdm: core: Update the mixer, framebuffer and display properly
-# Change-Id: I8e1324787e35f2c675f1c8580901fb3fadc8f3c9
-apply_gerrit_cl_commit refs/changes/09/729209/2 c62b4c1d5aeb39562d2241238082a73f39a7ea1b
-# hwc2: Do not treat color mode errors as fatal at init
-# Change-Id: I56926f320eb7719a22475793322d19244dd5d4d5
-apply_gerrit_cl_commit refs/changes/10/729210/1 ae41c6d8047767f2cd84f6d4e7ef36c653bbb8f5
-# msm8998: gralloc1: disable UBWC if video encoder client has no support
-# Change-Id: I1ff2489b0ce8fe36a801881b848873e591077402
-apply_gerrit_cl_commit refs/changes/11/729211/1 8dcf282bcec842ae633f43fc6dd1ecb397986d5c
-# color_manager: Update display color api libname
-# Change-Id: I3626975ddff8458c641dc60b3632581512f91b94
-apply_gerrit_cl_commit refs/changes/12/729212/1 977eaf6520b189100df7729644a062a2fd9a6bc4
-# msm8998: sdm: hwc2: Added property to disable skipping client color transform.
-# Change-Id: I5e2508b2de391007f93064fe5bd506dd62050fbc
-apply_gerrit_cl_commit refs/changes/13/729213/1 7f8016eb2f5b090847e70b69c08cae555add6e7f
-popd
-
 pushd $ANDROOT/hardware/qcom/bt
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bt"
 # bt: use TARGET_BOARD_AUTO to override qcom hals
