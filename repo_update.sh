@@ -114,30 +114,18 @@ popd
 
 pushd $ANDROOT/hardware/qcom/audio
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/audio"
-# audio: add sm8150 into support platform list
-# Change-Id: Ic0e99aa9bd25790920f9cc13e42c0bd2de815fe6
-git revert --no-edit 07f96d11649ffe2af61f83b4c7f22d12b407e03f
-# hal: enable audio_hw flag for sdm710 platform
-# Change-Id: I98fc64fc972dd073cde394aa59dafbde892ba06a
-git revert --no-edit e56cd4bc673e7068d59803b9ac02f660e6bfd14e
 # hal: Correct mixer control name for 3.5mm headphone
 # Change-Id: I749609aabfed53e8adb3575695c248bf9a674874
 git revert --no-edit 39a2b8a03c0a8a44940ac732f636d9cc1959eff2
-# Add msm8976 tasha sound card detection to msm8916 HAL
-# Change-Id: I9ac11e781cf627fa5efe586c96e48bfd04f32485
-apply_gerrit_cl_commit refs/changes/49/728149/5 60f127241193694fa369adef134bdf3dd4bb9e8d
-# post_proc: Enable post processing for msm8952
-# Change-Id: If1162f8696f60ce68452249e5e546aec1d7aa5e1
-apply_gerrit_cl_commit refs/changes/50/728150/4 3df44637ca88e0c3b3a8af17a052d65897385996
-# Define default msm8998 pcm device for voicemmode call
-# Change-Id: I9c7aa65bdcc0e460e287fd8e602b3a12e5be2191
-apply_gerrit_cl_commit refs/changes/51/728151/3 798fc75d957367cb1b8d2c5634d19ac95087efd9
-# hal: enable audio hal on sdm660
-# Change-Id: I0edd5fa2c67eb7a96a44e907060dcbb273e983ac
-apply_gerrit_cl_commit refs/changes/52/728152/4 93d7228217afa6a7b07b0df21d46b333847524e9
-# post_proc: Enable post processing for sdm660
-# Change-Id: I18b9cec56c6197b4465e8009c7e50aa95e111d32
-apply_gerrit_cl_commit refs/changes/53/728153/3 9ea9d3f27686b5bccd75625c127518070d7a93e9
+
+#Add msm8976 tasha sound card detection to msm8916 HAL
+#Change-Id:  Idc5ab339bb9c898205986ba0b4c7cc91febf19de
+apply_gerrit_cl_commit refs/changes/99/1112099/2 e8fd8ed043ec79daf1939b43c79c48954cda695b
+
+#hal: enable audio hal on sdm660
+#Change-Id: I7bb807788e457f7ec6ce5124dfb1d88dc96d8127
+apply_gerrit_cl_commit refs/changes/00/1112100/2 e506bf4def0356450a6f5c456ffbb234cf284f5d
+
 # hal: msm8916: Fix for vndk compilation errors
 # Change-Id: Iffd8a3c00a2a1ad063e10c0ebf3ce9e88e3edea0
 apply_gerrit_cl_commit refs/changes/14/777714/1 065ec9c4857fdd092d689a0526e0caeaaa6b1d72
