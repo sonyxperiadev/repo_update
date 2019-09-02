@@ -85,6 +85,13 @@ apply_gerrit_cl_commit refs/changes/56/787256/3 a31e2bda893910fa938099c4417e4b36
 apply_gerrit_cl_commit refs/changes/60/831260/4 d3072b0c7cef7f5a217a055e66d85890c78620bc
 popd
 
+pushd $ANDROOT/bionic
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/bionic"
+# clean_header: Write to correct dst_file
+# Change-Id: I8c5e284ce7a6737d77a2f5ead3e7e5db01317425
+apply_gerrit_cl_commit refs/changes/34/936634/2 316f4a499c4e0e014f59e1207090f84303c5bf7d
+popd
+
 pushd $ANDROOT/hardware/qcom/data/ipacfg-mgr/sdm845
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/data/ipacfg-mgr"
 # guard use of kernel sources
