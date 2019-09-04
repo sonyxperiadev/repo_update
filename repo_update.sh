@@ -52,11 +52,11 @@ pushd $ANDROOT/art
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/art"
 #ART: Add support for ARMv8.x features for ARM64.
 #Change-Id: I3ae9db34507a3bb740fc0b7ceb335486dccdf460
-apply_gerrit_cl_commit refs/changes/97/1112097/2 c6301193a5ccbb31499d6ab945b6d9626c4fc72e
+apply_gerrit_cl_commit refs/changes/97/1112097/2 7de7c4cd0c8f800caa8c5f240eabd3965ac05ac3
 
 #ART: Support kryo385 CPU.
 #Change-Id: Iede5830093497abe753a34df3bc4913468be39d0
-apply_gerrit_cl_commit refs/changes/29/837429/3 40ea08c79d92ddf46d496634ed4d5ec55380d51a
+apply_gerrit_cl_commit refs/changes/29/837429/3 b06fbf7dfdb360885a1791b61c8943200c77e4e6
 popd
 
 pushd $ANDROOT/build/make/
@@ -135,11 +135,11 @@ git revert --no-edit 39a2b8a03c0a8a44940ac732f636d9cc1959eff2
 
 #Add msm8976 tasha sound card detection to msm8916 HAL
 #Change-Id:  Idc5ab339bb9c898205986ba0b4c7cc91febf19de
-apply_gerrit_cl_commit refs/changes/99/1112099/2 e8fd8ed043ec79daf1939b43c79c48954cda695b
+apply_gerrit_cl_commit refs/changes/99/1112099/2 5d6e73eca6f83ce5e7375aa1bd6ed61143d30978
 
 #hal: enable audio hal on sdm660
 #Change-Id: I7bb807788e457f7ec6ce5124dfb1d88dc96d8127
-apply_gerrit_cl_commit refs/changes/00/1112100/2 e506bf4def0356450a6f5c456ffbb234cf284f5d
+apply_gerrit_cl_commit refs/changes/00/1112100/2 eeecf8a399080598e5290d3356b0ad557bd0ccbd
 
 # hal: msm8916: Fix for vndk compilation errors
 # Change-Id: Iffd8a3c00a2a1ad063e10c0ebf3ce9e88e3edea0
