@@ -20,6 +20,7 @@ popd () {
 }
 
 apply_gerrit_cl_commit() {
+    echo $PWD
     _ref=$1
     _commit=$2
     # Check whether the commit is already stored
@@ -34,10 +35,9 @@ apply_gerrit_cl_commit() {
             echo -e "\tFetched commit is not \"$_commit\""
             echo -e "\tPlease update the commit hash for $_ref to \"$_fetched\""
         fi
-        git cherry-pick FETCH_HEAD
-    else
-        git cherry-pick $_commit
     fi
+    # keep-redundant-commits
+    git cherry-pick --ff --allow-empty $_commit
 }
 
 if [ "$SKIP_SYNC" != "TRUE" ]; then
@@ -49,12 +49,14 @@ if [ "$SKIP_SYNC" != "TRUE" ]; then
 fi
 
 pushd $ANDROOT/build/make
+repo sync -l .
 LINK="$HTTP://android.googlesource.com/platform/build"
 
 apply_gerrit_cl_commit refs/changes/28/970728/8 8453f02c652e1ec0467648064393b61c9b424d68
 popd
 
 pushd $ANDROOT/hardware/qcom/data/ipacfg-mgr/sdm845
+repo sync -l .
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/data/ipacfg-mgr"
 # guard use of kernel sources
 # Change-Id: Ie8e892c5a7cca28cc58cbead88a9796ebc80a9f8
@@ -62,6 +64,7 @@ apply_gerrit_cl_commit refs/changes/23/834623/1 d8c88764440b0114b5f10bd9561a6b5d
 popd
 
 pushd $ANDROOT/hardware/qcom/gps
+repo sync -l .
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
 # gps: use TARGET_BOARD_AUTO to override qcom hals
 # Change-Id: I28898df1e8855347129039b5cb0d43975d3a5415
@@ -80,6 +83,7 @@ apply_gerrit_cl_commit refs/changes/39/804439/1 c1bdb439aaf7ecddd9f499dce5c7b56e
 popd
 
 pushd $ANDROOT/hardware/qcom/audio
+repo sync -l .
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/audio"
 # hal: Correct mixer control name for 3.5mm headphone
 # Change-Id: I749609aabfed53e8adb3575695c248bf9a674874
@@ -111,6 +115,7 @@ apply_gerrit_cl_commit refs/changes/51/1118151/1 b7c1366360089d6cd1b4b18c70085a8
 popd
 
 pushd $ANDROOT/hardware/qcom/media
+repo sync -l .
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/media"
 # msm8998: vdec: Add missing ifdefs for UBWC on DPB buffer decision
 # Change-Id: I76131db5272b97016679c5bc0bf6ae099167cd03
@@ -124,6 +129,7 @@ apply_gerrit_cl_commit refs/changes/55/813055/1 cb97584647999d7ea8df858f2c3f4bf0
 popd
 
 pushd $ANDROOT/hardware/qcom/media/sdm845
+repo sync -l .
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/media"
 # Avoid missing dependency error for AOSP builds
 # Change-Id: I19aa7a79f60bfd1182b5846ed54bf0fbf4fe0419
@@ -134,6 +140,7 @@ apply_gerrit_cl_commit refs/changes/84/832784/1 07a63defb34cd0a18849d4488ef11a87
 popd
 
 pushd $ANDROOT/hardware/qcom/bt
+repo sync -l .
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bt"
 # bt: use TARGET_BOARD_AUTO to override qcom hals
 # Change-Id: I28898df1e8855347129039b5cb0d43975d3a5415
@@ -141,6 +148,7 @@ apply_gerrit_cl_commit refs/changes/69/728569/1 e0e30f0d46ef2ff5bcb707eaf47a596c
 popd
 
 pushd $ANDROOT/hardware/qcom/bootctrl
+repo sync -l .
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
 # Build bootctrl.sdm710 with Android.bp.
 # Change-Id: Ib29d901b44ad0ec079c3e979bfdcd467e1a18377
@@ -158,6 +166,7 @@ apply_gerrit_cl_commit refs/changes/87/971787/1 7bde6868ff24001f8b6deb8cf643d86d
 popd
 
 pushd $ANDROOT/hardware/nxp/nfc
+repo sync -l .
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/nxp/nfc"
 # hardware: nxp: Restore pn548 support to 1.1 HAL
 # Change-Id: Ifbef5a5ec0928b0a90b2fc71d84872525d0cf1a6
@@ -169,6 +178,7 @@ apply_gerrit_cl_commit refs/changes/69/980169/2 a58def9e0ce610f1a349d5de31f26712
 popd
 
 pushd $ANDROOT/frameworks/base
+repo sync -l .
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
 # fwb: Add check for odm version
 # Change-Id: Ifab6ca5c2f97840bb4192226f191e624267edb32
@@ -182,6 +192,7 @@ apply_gerrit_cl_commit refs/changes/40/824340/2 cf575e7f64a976918938e6ea3bc74701
 popd
 
 pushd $ANDROOT/system/extras
+repo sync -l .
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/extras"
 # verity: Do not increment data when it is nullptr.
 apply_gerrit_cl_commit refs/changes/52/1117052/1 c82514bd034f214b16d273b10c676dd63a9e603b
