@@ -26,7 +26,15 @@ apply_gerrit_cl_commit() {
     if [ -z $(git rev-parse --quiet --verify $_commit^{commit}) ]
     # If not, fetch the ref from $LINK
     then
-        git fetch $LINK $_ref && git cherry-pick FETCH_HEAD
+        git fetch $LINK $_ref
+        _fetched=$(git rev-parse FETCH_HEAD)
+        if [ $_fetched != $_commit ]
+        then
+            echo "$(pwd): WARNING:"
+            echo -e "\tFetched commit is not $_commit"
+            echo -e "\tPlease update the commit hash for $_ref to $_fetched"
+        fi
+        git cherry-pick FETCH_HEAD
     else
         git cherry-pick $_commit
     fi
