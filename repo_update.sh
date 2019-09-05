@@ -52,7 +52,7 @@ apply_gerrit_cl_commit refs/changes/29/837429/3 40ea08c79d92ddf46d496634ed4d5ec5
 popd
 
 pushd $ANDROOT/build/make/
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/build/make"
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/build"
 # Add A76 to known v8-a cores
 # Change-Id: Ice05e7d4996252cfe4a9881a628c11b0f12cfd1b
 apply_gerrit_cl_commit refs/changes/56/787356/3 e211f7cd2dc419af8142df2bcb062f7a8b126843
