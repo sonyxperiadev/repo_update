@@ -58,6 +58,12 @@ if [ "$SKIP_SYNC" != "TRUE" ]; then
     repo sync -j8 --current-branch --no-tags
 fi
 
+pushd $ANDROOT/build/make
+LINK="$HTTP://android.googlesource.com/platform/build"
+
+apply_gerrit_cl_commit refs/changes/28/970728/8 8453f02c652e1ec0467648064393b61c9b424d68
+popd
+
 pushd $ANDROOT/hardware/qcom/data/ipacfg-mgr/sdm845
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/data/ipacfg-mgr"
 # guard use of kernel sources
