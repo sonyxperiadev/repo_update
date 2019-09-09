@@ -175,6 +175,12 @@ apply_gerrit_cl_commit refs/changes/05/728605/1 b6f563436ca1b1496bf6026453e5b805
 apply_gerrit_cl_commit refs/changes/13/1117113/1 3531822d8f36daa2f60f009b3dfdc03817d936e1
 popd
 
+pushd $ANDROOT/system/extras
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/extras"
+# verity: Do not increment data when it is nullptr.
+apply_gerrit_cl_commit refs/changes/52/1117052/1 c82514bd034f214b16d273b10c676dd63a9e603b
+popd
+
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
