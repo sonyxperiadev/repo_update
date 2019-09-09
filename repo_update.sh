@@ -99,6 +99,14 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/audio"
 # Change-Id: I749609aabfed53e8adb3575695c248bf9a674874
 git revert --no-edit 39a2b8a03c0a8a44940ac732f636d9cc1959eff2
 
+# Switch msmnile to new Audio HAL
+# Change-Id: I28e8c28822b29af68b52eb84f07f1eca746afa6d
+git revert --no-edit d0d5c9135fed70a25a42f09f0e32b056bc7b15a8
+
+# switch sm8150 to msmnile
+# Change-id: I37b9461240551037812b35d96d0b2db5e30bae5f
+git revert --no-edit 8e9b92d2c87e9d1cd96ef153853287cb79d5934c
+
 #Add msm8976 tasha sound card detection to msm8916 HAL
 #Change-Id:  Idc5ab339bb9c898205986ba0b4c7cc91febf19de
 apply_gerrit_cl_commit refs/changes/99/1112099/2 5d6e73eca6f83ce5e7375aa1bd6ed61143d30978
