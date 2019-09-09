@@ -48,58 +48,6 @@ if [ "$SKIP_SYNC" != "TRUE" ]; then
     repo sync -j8 --current-branch --no-tags
 fi
 
-pushd $ANDROOT/art
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/art"
-#ART: Add support for ARMv8.x features for ARM64.
-#Change-Id: I3ae9db34507a3bb740fc0b7ceb335486dccdf460
-apply_gerrit_cl_commit refs/changes/97/1112097/2 7de7c4cd0c8f800caa8c5f240eabd3965ac05ac3
-
-#ART: Support kryo385 CPU.
-#Change-Id: Iede5830093497abe753a34df3bc4913468be39d0
-apply_gerrit_cl_commit refs/changes/29/837429/3 b06fbf7dfdb360885a1791b61c8943200c77e4e6
-popd
-
-pushd $ANDROOT/build/make/
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/build"
-# Add A76 to known v8-a cores
-# Change-Id: Ice05e7d4996252cfe4a9881a628c11b0f12cfd1b
-apply_gerrit_cl_commit refs/changes/56/787356/3 e211f7cd2dc419af8142df2bcb062f7a8b126843
-
-# Remove denver64 from make
-# Change-Id: I8f28c7d6beaa5b0a7de9000ebea2f4d8e87f0381
-apply_gerrit_cl_commit refs/changes/49/839749/3 6201b9eb5a91db2cb389838734e004a87505c807
-
-# Enable armv8-2a supporting on 2nd arch. variant
-# Change-Id: I1cd64ab0ad9b253ec3d109ebd1dbc7882011ce77
-apply_gerrit_cl_commit refs/changes/21/824721/1 ead02eb87d6424b39cad9596cde53f643edadb51
-
-# Support kryo385 CPU.
-# Change-Id: Iede5830093497abe753a34df3bc4913468be39d0
-apply_gerrit_cl_commit refs/changes/90/837390/3 f7dccc6bc077f9f95bcfad0e49f19f64aed44fc9
-popd
-
-pushd $ANDROOT/build/soong
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/build/soong"
-# Add to support armv8-2a on 2nd arch. variant
-# Change-Id: I755b8858726bd887068923123bad106aed7b1ec8
-apply_gerrit_cl_commit refs/changes/02/824502/2 270ba75991b6c8f02123ad1b016346f7ca0fea33
-
-# Add support for cortex-a76 in soong
-# Change-Id: Iae0773d54e57b247c818d44f8044180d5a3f95a8
-apply_gerrit_cl_commit refs/changes/56/787256/3 a31e2bda893910fa938099c4417e4b36d7513667
-
-# Support Qualcomm Kryo 385 CPU variant.
-# I62ffb46b1977b48446c6c1ca1400b1b39f7a8457
-apply_gerrit_cl_commit refs/changes/60/831260/4 d3072b0c7cef7f5a217a055e66d85890c78620bc
-popd
-
-pushd $ANDROOT/bionic
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/bionic"
-# clean_header: Write to correct dst_file
-# Change-Id: I8c5e284ce7a6737d77a2f5ead3e7e5db01317425
-apply_gerrit_cl_commit refs/changes/34/936634/2 316f4a499c4e0e014f59e1207090f84303c5bf7d
-popd
-
 pushd $ANDROOT/hardware/qcom/data/ipacfg-mgr/sdm845
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/data/ipacfg-mgr"
 # guard use of kernel sources
