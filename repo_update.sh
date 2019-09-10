@@ -28,26 +28,16 @@ apply_gerrit_cl_commit() {
     then
         git fetch $LINK $_ref
         _fetched=$(git rev-parse FETCH_HEAD)
-        if [ $_fetched != $_commit ]
+        if [ "$_fetched" != "$_commit" ]
         then
             echo "$(pwd): WARNING:"
-            echo -e "\tFetched commit is not $_commit"
-            echo -e "\tPlease update the commit hash for $_ref to $_fetched"
+            echo -e "\tFetched commit is not \"$_commit\""
+            echo -e "\tPlease update the commit hash for $_ref to \"$_fetched\""
         fi
         git cherry-pick FETCH_HEAD
     else
         git cherry-pick $_commit
     fi
-}
-
-apply_local_patches() {
-    _path="${PWD#"$ANDROOT/"}"
-
-    for patch in $ANDROOT/vendor/oss/repo_update/$_path/*.patch
-    do
-        echo applying $patch
-        git am $patch
-    done
 }
 
 if [ "$SKIP_SYNC" != "TRUE" ]; then
@@ -82,10 +72,6 @@ git revert --no-edit 484979c524067125b56d59afb102003ff48e3702
 git revert --no-edit f475797d3c031ae97a393fa3e899034836fe7ba6
 # Revert "FR 46082 - SUPL Network Setup Improvements"
 git revert --no-edit 35a95e0a9bc9aeab1bb1847180babda2da5fbf90
-# Revert "DO NOT MERGE: Revert "Revert "sdm845: Add libprocessgroup dependency to set_sched_policy users""
-git revert --no-edit db96236976a195bda833d821d584bc76ea4cdbae
-
-apply_local_patches
 
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/gps"
 # gps: sdm845: gnss: use correct format specifier in log
@@ -119,7 +105,9 @@ apply_gerrit_cl_commit refs/changes/00/1112100/2 eeecf8a399080598e5290d3356b0ad5
 # Change-Id: Iffd8a3c00a2a1ad063e10c0ebf3ce9e88e3edea0
 apply_gerrit_cl_commit refs/changes/14/777714/1 065ec9c4857fdd092d689a0526e0caeaaa6b1d72
 
-apply_local_patches
+# hal: msm8916: Add missing bracket to close function definition.
+# Change-Id: I8296a8fb551097fabf72115d2cec0849671b91ea
+apply_gerrit_cl_commit refs/changes/51/1118151/1 b7c1366360089d6cd1b4b18c70085a802a6a0544
 popd
 
 pushd $ANDROOT/hardware/qcom/media
@@ -153,17 +141,35 @@ apply_gerrit_cl_commit refs/changes/69/728569/1 e0e30f0d46ef2ff5bcb707eaf47a596c
 popd
 
 pushd $ANDROOT/hardware/qcom/bootctrl
-apply_local_patches
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
+# Build bootctrl.sdm710 with Android.bp.
+# Change-Id: Ib29d901b44ad0ec079c3e979bfdcd467e1a18377
+apply_gerrit_cl_commit refs/changes/01/965401/1 c665a9c43f379f754b4ee25df2818b6c20c5346e
+# Revert^2 "Build bootctrl.msm8998 with Android.bp.""
+# Change-Id: I6a85b7885903df818deb32c40c751ac4358a6dbc
+apply_gerrit_cl_commit refs/changes/93/968693/1 1933d30528c58598d7423d8b307d8e0fd2c50ad5
+# Build bootctrl.msm8996 with Android.bp.
+# Android.mk itself will be removed in a separate CL.
+# Change-Id: I864bd626d25723bd390b2453022d9cd47a54d2a2
+apply_gerrit_cl_commit refs/changes/96/967996/3 b229dfc102d5ea8e659514c61f6520ab3f9f777c
+# Remove Android.mk rules for building bootctrl.
+# Change-Id: Ib110508065f47a742acd92e03ea42901e8002e4f
+apply_gerrit_cl_commit refs/changes/87/971787/1 7bde6868ff24001f8b6deb8cf643d86d71978b93
 popd
 
 pushd $ANDROOT/hardware/nxp/nfc
-apply_local_patches
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/nxp/nfc"
+# hardware: nxp: Restore pn548 support to 1.1 HAL
+# Change-Id: Ifbef5a5ec0928b0a90b2fc71d84872525d0cf1a6
+apply_gerrit_cl_commit refs/changes/77/980177/3 0285b720ea752c8dcf28c35d794990e982103ada
+# hardware: nxp: Restore pn547 support
+# Change-Id: I226fa084d22850a8610f1d67ef30b96250fbd570
+# (Cherry-picked from: I498367f676f8c8d7fc13e849509d0d8a05ec89a8)
+apply_gerrit_cl_commit refs/changes/69/980169/2 a58def9e0ce610f1a349d5de31f267129a0a2397
 popd
 
 pushd $ANDROOT/frameworks/base
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
-apply_local_patches
-
 # fwb: Add check for odm version
 # Change-Id: Ifab6ca5c2f97840bb4192226f191e624267edb32
 apply_gerrit_cl_commit refs/changes/75/728575/1 d6f654b013b00fa55b5c50f3f599df50847811bb
@@ -172,7 +178,7 @@ apply_gerrit_cl_commit refs/changes/75/728575/1 d6f654b013b00fa55b5c50f3f599df50
 apply_gerrit_cl_commit refs/changes/05/728605/1 b6f563436ca1b1496bf6026453e5b805c856f9e6
 # SystemUI: Implement burn-in protection for status-bar/nav-bar items
 # Change-Id: I828dbd4029b4d3b1f2c86b682a03642e3f9aeeb9
-apply_gerrit_cl_commit refs/changes/13/1117113/1 3531822d8f36daa2f60f009b3dfdc03817d936e1
+apply_gerrit_cl_commit refs/changes/40/824340/2 cf575e7f64a976918938e6ea3bc747011fb3b551
 popd
 
 pushd $ANDROOT/system/extras
