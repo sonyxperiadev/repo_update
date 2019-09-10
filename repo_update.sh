@@ -161,12 +161,13 @@ popd
 
 pushd $ANDROOT/hardware/nxp/nfc
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/nxp/nfc"
-# hardware: nxp: Restore pn548 support
-# Change-Id: Iafb0d31626d0a8b9faf22f5307ac8b0a5a9ded37
-apply_gerrit_cl_commit refs/changes/61/744361/2 e3f2e87aaf9a24d61e3e3e350854d6da360696d8
+# hardware: nxp: Restore pn548 support to 1.1 HAL
+# Change-Id: Ifbef5a5ec0928b0a90b2fc71d84872525d0cf1a6
+apply_gerrit_cl_commit refs/changes/77/980177/3 0285b720ea752c8dcf28c35d794990e982103ada
 # hardware: nxp: Restore pn547 support
-# Change-Id: I498367f676f8c8d7fc13e849509d0d8a05ec89a8
-apply_gerrit_cl_commit refs/changes/62/744362/5 6629cfdaf4c41f09b69874e5d0c40552c197a517
+# Change-Id: I226fa084d22850a8610f1d67ef30b96250fbd570
+# (Cherry-picked from: I498367f676f8c8d7fc13e849509d0d8a05ec89a8)
+apply_gerrit_cl_commit refs/changes/69/980169/2 a58def9e0ce610f1a349d5de31f267129a0a2397
 popd
 
 pushd $ANDROOT/frameworks/base
