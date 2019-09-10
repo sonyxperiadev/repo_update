@@ -40,6 +40,16 @@ apply_gerrit_cl_commit() {
     fi
 }
 
+apply_local_patches() {
+    _path="${PWD#"$ANDROOT/"}"
+
+    for patch in $ANDROOT/vendor/oss/repo_update/$_path/*.patch
+    do
+        echo applying $patch
+        git am $patch
+    done
+}
+
 if [ "$SKIP_SYNC" != "TRUE" ]; then
     pushd $ANDROOT/.repo/local_manifests
     git pull
@@ -48,56 +58,10 @@ if [ "$SKIP_SYNC" != "TRUE" ]; then
     repo sync -j8 --current-branch --no-tags
 fi
 
-pushd $ANDROOT/art
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/art"
-#ART: Add support for ARMv8.x features for ARM64.
-#Change-Id: I3ae9db34507a3bb740fc0b7ceb335486dccdf460
-apply_gerrit_cl_commit refs/changes/97/1112097/2 7de7c4cd0c8f800caa8c5f240eabd3965ac05ac3
+pushd $ANDROOT/build/make
+LINK="$HTTP://android.googlesource.com/platform/build"
 
-#ART: Support kryo385 CPU.
-#Change-Id: Iede5830093497abe753a34df3bc4913468be39d0
-apply_gerrit_cl_commit refs/changes/29/837429/3 b06fbf7dfdb360885a1791b61c8943200c77e4e6
-popd
-
-pushd $ANDROOT/build/make/
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/build"
-# Add A76 to known v8-a cores
-# Change-Id: Ice05e7d4996252cfe4a9881a628c11b0f12cfd1b
-apply_gerrit_cl_commit refs/changes/56/787356/3 e211f7cd2dc419af8142df2bcb062f7a8b126843
-
-# Remove denver64 from make
-# Change-Id: I8f28c7d6beaa5b0a7de9000ebea2f4d8e87f0381
-apply_gerrit_cl_commit refs/changes/49/839749/3 6201b9eb5a91db2cb389838734e004a87505c807
-
-# Enable armv8-2a supporting on 2nd arch. variant
-# Change-Id: I1cd64ab0ad9b253ec3d109ebd1dbc7882011ce77
-apply_gerrit_cl_commit refs/changes/21/824721/1 ead02eb87d6424b39cad9596cde53f643edadb51
-
-# Support kryo385 CPU.
-# Change-Id: Iede5830093497abe753a34df3bc4913468be39d0
-apply_gerrit_cl_commit refs/changes/90/837390/3 f7dccc6bc077f9f95bcfad0e49f19f64aed44fc9
-popd
-
-pushd $ANDROOT/build/soong
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/build/soong"
-# Add to support armv8-2a on 2nd arch. variant
-# Change-Id: I755b8858726bd887068923123bad106aed7b1ec8
-apply_gerrit_cl_commit refs/changes/02/824502/2 270ba75991b6c8f02123ad1b016346f7ca0fea33
-
-# Add support for cortex-a76 in soong
-# Change-Id: Iae0773d54e57b247c818d44f8044180d5a3f95a8
-apply_gerrit_cl_commit refs/changes/56/787256/3 a31e2bda893910fa938099c4417e4b36d7513667
-
-# Support Qualcomm Kryo 385 CPU variant.
-# I62ffb46b1977b48446c6c1ca1400b1b39f7a8457
-apply_gerrit_cl_commit refs/changes/60/831260/4 d3072b0c7cef7f5a217a055e66d85890c78620bc
-popd
-
-pushd $ANDROOT/bionic
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/bionic"
-# clean_header: Write to correct dst_file
-# Change-Id: I8c5e284ce7a6737d77a2f5ead3e7e5db01317425
-apply_gerrit_cl_commit refs/changes/34/936634/2 316f4a499c4e0e014f59e1207090f84303c5bf7d
+apply_gerrit_cl_commit refs/changes/28/970728/8 8453f02c652e1ec0467648064393b61c9b424d68
 popd
 
 pushd $ANDROOT/hardware/qcom/data/ipacfg-mgr/sdm845
@@ -121,6 +85,8 @@ git revert --no-edit 35a95e0a9bc9aeab1bb1847180babda2da5fbf90
 # Revert "DO NOT MERGE: Revert "Revert "sdm845: Add libprocessgroup dependency to set_sched_policy users""
 git revert --no-edit db96236976a195bda833d821d584bc76ea4cdbae
 
+apply_local_patches
+
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/gps"
 # gps: sdm845: gnss: use correct format specifier in log
 # Change-Id: I24ad0342d6d26f1c7fe2fcac451a71bbfba8bfe0
@@ -133,6 +99,14 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/audio"
 # Change-Id: I749609aabfed53e8adb3575695c248bf9a674874
 git revert --no-edit 39a2b8a03c0a8a44940ac732f636d9cc1959eff2
 
+# Switch msmnile to new Audio HAL
+# Change-Id: I28e8c28822b29af68b52eb84f07f1eca746afa6d
+git revert --no-edit d0d5c9135fed70a25a42f09f0e32b056bc7b15a8
+
+# switch sm8150 to msmnile
+# Change-id: I37b9461240551037812b35d96d0b2db5e30bae5f
+git revert --no-edit 8e9b92d2c87e9d1cd96ef153853287cb79d5934c
+
 #Add msm8976 tasha sound card detection to msm8916 HAL
 #Change-Id:  Idc5ab339bb9c898205986ba0b4c7cc91febf19de
 apply_gerrit_cl_commit refs/changes/99/1112099/2 5d6e73eca6f83ce5e7375aa1bd6ed61143d30978
@@ -144,6 +118,8 @@ apply_gerrit_cl_commit refs/changes/00/1112100/2 eeecf8a399080598e5290d3356b0ad5
 # hal: msm8916: Fix for vndk compilation errors
 # Change-Id: Iffd8a3c00a2a1ad063e10c0ebf3ce9e88e3edea0
 apply_gerrit_cl_commit refs/changes/14/777714/1 065ec9c4857fdd092d689a0526e0caeaaa6b1d72
+
+apply_local_patches
 popd
 
 pushd $ANDROOT/hardware/qcom/media
@@ -169,25 +145,6 @@ apply_gerrit_cl_commit refs/changes/80/832780/1 3a2fe3ec7974f9f1e9772d0009dc4df0
 apply_gerrit_cl_commit refs/changes/84/832784/1 07a63defb34cd0a18849d4488ef11a8793e6cf3b
 popd
 
-pushd $ANDROOT/hardware/qcom/display
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/display"
-# sdm: core: Update the mixer, framebuffer and display properly
-# Change-Id: I8e1324787e35f2c675f1c8580901fb3fadc8f3c9
-apply_gerrit_cl_commit refs/changes/09/729209/2 c62b4c1d5aeb39562d2241238082a73f39a7ea1b
-# hwc2: Do not treat color mode errors as fatal at init
-# Change-Id: I56926f320eb7719a22475793322d19244dd5d4d5
-apply_gerrit_cl_commit refs/changes/10/729210/1 ae41c6d8047767f2cd84f6d4e7ef36c653bbb8f5
-# msm8998: gralloc1: disable UBWC if video encoder client has no support
-# Change-Id: I1ff2489b0ce8fe36a801881b848873e591077402
-apply_gerrit_cl_commit refs/changes/11/729211/1 8dcf282bcec842ae633f43fc6dd1ecb397986d5c
-# color_manager: Update display color api libname
-# Change-Id: I3626975ddff8458c641dc60b3632581512f91b94
-apply_gerrit_cl_commit refs/changes/12/729212/1 977eaf6520b189100df7729644a062a2fd9a6bc4
-# msm8998: sdm: hwc2: Added property to disable skipping client color transform.
-# Change-Id: I5e2508b2de391007f93064fe5bd506dd62050fbc
-apply_gerrit_cl_commit refs/changes/13/729213/1 7f8016eb2f5b090847e70b69c08cae555add6e7f
-popd
-
 pushd $ANDROOT/hardware/qcom/bt
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bt"
 # bt: use TARGET_BOARD_AUTO to override qcom hals
@@ -196,33 +153,17 @@ apply_gerrit_cl_commit refs/changes/69/728569/1 e0e30f0d46ef2ff5bcb707eaf47a596c
 popd
 
 pushd $ANDROOT/hardware/qcom/bootctrl
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
-# bootcontrol: Add TARGET_USES_HARDWARE_QCOM_BOOTCTRL
-# Change-Id: I958bcf29da2ea5914ac503e9d209c75ce44f1e51
-git revert --no-edit f5db01c3b14d720f3d603cfb3b887d89c2b11b28
-# Android.mk: add sdm710
-# Change-Id: I82f2321d580cb2fdb15d2343e39abed5ccda50b1
-git revert --no-edit a8e07aecb24898d7d2b49cb785b0c193a4b134b4
-# Replace hardcoded build barrier with a generic one
-# Change-Id: I34ee90a2818ad23cc6b9233bdde126a0965fae0d
-apply_gerrit_cl_commit refs/changes/70/728570/2 0ae34c3a19fb0a1a0bd9775199692d550af4b8f5
+apply_local_patches
 popd
 
 pushd $ANDROOT/hardware/nxp/nfc
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/nxp/nfc"
-# hardware: nxp: Restore pn548 support
-# Change-Id: Iafb0d31626d0a8b9faf22f5307ac8b0a5a9ded37
-apply_gerrit_cl_commit refs/changes/61/744361/2 e3f2e87aaf9a24d61e3e3e350854d6da360696d8
-# hardware: nxp: Restore pn547 support
-# Change-Id: I498367f676f8c8d7fc13e849509d0d8a05ec89a8
-apply_gerrit_cl_commit refs/changes/62/744362/5 6629cfdaf4c41f09b69874e5d0c40552c197a517
+apply_local_patches
 popd
 
 pushd $ANDROOT/frameworks/base
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
-# Add camera key long press handling
-# Change-Id: I9e68032eee221c20608f0d2c491c2b308350f7f6
-apply_gerrit_cl_commit refs/changes/15/727815/1 7913f55462b61c17b0700cf57d3f1a375bb4c565
+apply_local_patches
+
 # fwb: Add check for odm version
 # Change-Id: Ifab6ca5c2f97840bb4192226f191e624267edb32
 apply_gerrit_cl_commit refs/changes/75/728575/1 d6f654b013b00fa55b5c50f3f599df50847811bb
@@ -231,7 +172,13 @@ apply_gerrit_cl_commit refs/changes/75/728575/1 d6f654b013b00fa55b5c50f3f599df50
 apply_gerrit_cl_commit refs/changes/05/728605/1 b6f563436ca1b1496bf6026453e5b805c856f9e6
 # SystemUI: Implement burn-in protection for status-bar/nav-bar items
 # Change-Id: I828dbd4029b4d3b1f2c86b682a03642e3f9aeeb9
-apply_gerrit_cl_commit refs/changes/40/824340/1 6272c6244d2b007eb6ad08fb682d77612555d1ac
+apply_gerrit_cl_commit refs/changes/13/1117113/1 3531822d8f36daa2f60f009b3dfdc03817d936e1
+popd
+
+pushd $ANDROOT/system/extras
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/extras"
+# verity: Do not increment data when it is nullptr.
+apply_gerrit_cl_commit refs/changes/52/1117052/1 c82514bd034f214b16d273b10c676dd63a9e603b
 popd
 
 # because "set -e" is used above, when we get to this point, we know

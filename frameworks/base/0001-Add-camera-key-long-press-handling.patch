@@ -1,0 +1,166 @@
+From 951408a780991c35545a19bdeb8699920de4d0da Mon Sep 17 00:00:00 2001
+From: Pablo Mendez Hernandez <pablomh@gmail.com>
+Date: Wed, 8 Aug 2018 14:59:03 +0200
+Subject: [PATCH 1/1] Add camera key long press handling
+
+Test: launch default camera app by pressing camera key.
+
+Change-Id: I9e68032eee221c20608f0d2c491c2b308350f7f6
+---
+ core/java/android/view/KeyEvent.java          |  1 +
+ .../server/policy/PhoneWindowManager.java     | 71 ++++++++++++++++++-
+ 2 files changed, 70 insertions(+), 2 deletions(-)
+
+diff --git a/core/java/android/view/KeyEvent.java b/core/java/android/view/KeyEvent.java
+index 87dd5b47c44..8a12fcbbf8f 100644
+--- a/core/java/android/view/KeyEvent.java
++++ b/core/java/android/view/KeyEvent.java
+@@ -1935,6 +1935,7 @@ public class KeyEvent extends InputEvent implements Parcelable {
+         switch (keyCode) {
+             case KeyEvent.KEYCODE_BACK:
+             case KeyEvent.KEYCODE_MENU:
++            case KeyEvent.KEYCODE_CAMERA:
+             case KeyEvent.KEYCODE_WAKEUP:
+             case KeyEvent.KEYCODE_PAIRING:
+             case KeyEvent.KEYCODE_STEM_1:
+diff --git a/services/core/java/com/android/server/policy/PhoneWindowManager.java b/services/core/java/com/android/server/policy/PhoneWindowManager.java
+index da87b2f1994..1e4cf9cfcc6 100644
+--- a/services/core/java/com/android/server/policy/PhoneWindowManager.java
++++ b/services/core/java/com/android/server/policy/PhoneWindowManager.java
+@@ -444,6 +444,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+     // to hold wakelocks during dispatch and eliminating the critical path.
+     volatile boolean mPowerKeyHandled;
+     volatile boolean mBackKeyHandled;
++    volatile boolean mCameraKeyHandled;
+     volatile boolean mBeganFromNonInteractive;
+     volatile int mPowerKeyPressCounter;
+     volatile boolean mEndCallKeyHandled;
+@@ -643,6 +644,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+     private static final int MSG_NOTIFY_USER_ACTIVITY = 26;
+     private static final int MSG_RINGER_TOGGLE_CHORD = 27;
+     private static final int MSG_MOVE_DISPLAY_TO_TOP = 28;
++    private static final int MSG_CAMERA_LONG_PRESS = 29;
+ 
+     private class PolicyHandler extends Handler {
+         @Override
+@@ -735,6 +737,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+                 case MSG_MOVE_DISPLAY_TO_TOP:
+                     mWindowManagerFuncs.moveDisplayToTop(msg.arg1);
+                     mMovingDisplayToTopKeyTriggered = false;
++                case MSG_CAMERA_LONG_PRESS:
++                    cameraLongPress((KeyEvent) msg.obj);
+                     break;
+             }
+         }
+@@ -840,6 +844,27 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+         mLogger.action(MetricsProto.MetricsEvent.ACTION_HUSH_GESTURE, mRingerToggleChord);
+     }
+ 
++    private void interceptCameraKeyDown(KeyEvent event) {
++        MetricsLogger.count(mContext, "key_camera_down", 1);
++        // Reset camera key state for long press
++        mCameraKeyHandled = false;
++
++        Message msg = mHandler.obtainMessage(MSG_CAMERA_LONG_PRESS, event);
++        msg.setAsynchronous(true);
++        mHandler.sendMessageDelayed(msg,
++                ViewConfiguration.get(mContext).getDeviceGlobalActionKeyTimeout());
++    }
++
++    private boolean interceptCameraKeyUp() {
++        // Cache handled state
++        boolean handled = mCameraKeyHandled;
++
++        // Reset back long press state
++        cancelPendingCameraKeyAction();
++
++        return handled;
++    }
++
+     IStatusBarService getStatusBarService() {
+         synchronized (mServiceAquireLock) {
+             if (mStatusBarService == null) {
+@@ -1092,6 +1117,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+         }
+     }
+ 
++    private void cancelPendingCameraKeyAction() {
++        if (!mCameraKeyHandled) {
++            mCameraKeyHandled = true;
++            mHandler.removeMessages(MSG_CAMERA_LONG_PRESS);
++        }
++    }
++
+     private void powerPress(long eventTime, boolean interactive, int count) {
+         if (mDefaultDisplayPolicy.isScreenOnEarly() && !mDefaultDisplayPolicy.isScreenOnFully()) {
+             Slog.i(TAG, "Suppressed redundant power key press while "
+@@ -1302,6 +1334,29 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+         }
+     }
+ 
++    private void cameraLongPress(KeyEvent event) {
++        mCameraKeyHandled = true;
++
++        boolean keyguardActive = mKeyguardDelegate == null
++                ? false
++                : mKeyguardDelegate.isShowing();
++        Intent intent = new Intent(keyguardActive
++                ? MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE
++                : MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
++        ResolveInfo resolveInfo = mContext.getPackageManager().resolveActivityAsUser(intent,
++                PackageManager.MATCH_DEFAULT_ONLY,
++                mCurrentUserId);
++        String packageToLaunch = (resolveInfo == null || resolveInfo.activityInfo == null)
++                ? null : resolveInfo.activityInfo.packageName;
++        List<ActivityManager.RunningTaskInfo> tasks =
++                mContext.getSystemService(ActivityManager.class).getRunningTasks(1);
++
++        if (packageToLaunch != null && (tasks.isEmpty() ||
++                !packageToLaunch.equals(tasks.get(0).topActivity.getPackageName()))) {
++            startActivityAsUser(intent, UserHandle.CURRENT_OR_SELF);
++        }
++    }
++
+     private void accessibilityShortcutActivated() {
+         mAccessibilityShortcutController.performAccessibilityShortcut();
+     }
+@@ -4036,6 +4091,19 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+                 }
+                 break;
+             }
++            case KeyEvent.KEYCODE_CAMERA: {
++                if (down) {
++                    interceptCameraKeyDown(event);
++                } else {
++                    boolean handled = interceptCameraKeyUp();
++
++                    // Don't pass camera press to app if we've already handled it via long press
++                    if (handled) {
++                        result &= ~ACTION_PASS_TO_USER;
++                    }
++                }
++                break;
++            }
+         }
+ 
+         // Intercept the Accessibility keychord for TV (DPAD_DOWN + Back) before the keyevent is
+@@ -4149,7 +4217,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+             case KeyEvent.KEYCODE_VOLUME_MUTE:
+                 return mDefaultDisplayPolicy.getDockMode() != Intent.EXTRA_DOCK_STATE_UNDOCKED;
+ 
+-            // ignore media and camera keys
++            // ignore media keys
+             case KeyEvent.KEYCODE_MUTE:
+             case KeyEvent.KEYCODE_HEADSETHOOK:
+             case KeyEvent.KEYCODE_MEDIA_PLAY:
+@@ -4162,7 +4230,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+             case KeyEvent.KEYCODE_MEDIA_RECORD:
+             case KeyEvent.KEYCODE_MEDIA_FAST_FORWARD:
+             case KeyEvent.KEYCODE_MEDIA_AUDIO_TRACK:
+-            case KeyEvent.KEYCODE_CAMERA:
+                 return false;
+         }
+         return true;
+-- 
+2.23.0
+
