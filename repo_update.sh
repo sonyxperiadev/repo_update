@@ -153,7 +153,20 @@ apply_gerrit_cl_commit refs/changes/69/728569/1 e0e30f0d46ef2ff5bcb707eaf47a596c
 popd
 
 pushd $ANDROOT/hardware/qcom/bootctrl
-apply_local_patches
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
+# Build bootctrl.sdm710 with Android.bp.
+# Change-Id: Ib29d901b44ad0ec079c3e979bfdcd467e1a18377
+apply_gerrit_cl_commit refs/changes/01/965401/1 c665a9c43f379f754b4ee25df2818b6c20c5346e
+# Revert^2 "Build bootctrl.msm8998 with Android.bp.""
+# Change-Id: I6a85b7885903df818deb32c40c751ac4358a6dbc
+apply_gerrit_cl_commit refs/changes/93/968693/1 1933d30528c58598d7423d8b307d8e0fd2c50ad5
+# Build bootctrl.msm8996 with Android.bp.
+# Android.mk itself will be removed in a separate CL.
+# Change-Id: I864bd626d25723bd390b2453022d9cd47a54d2a2
+apply_gerrit_cl_commit refs/changes/96/967996/3 b229dfc102d5ea8e659514c61f6520ab3f9f777c
+# Remove Android.mk rules for building bootctrl.
+# Change-Id: Ib110508065f47a742acd92e03ea42901e8002e4f
+apply_gerrit_cl_commit refs/changes/87/971787/1 7bde6868ff24001f8b6deb8cf643d86d71978b93
 popd
 
 pushd $ANDROOT/hardware/nxp/nfc
