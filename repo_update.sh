@@ -28,11 +28,11 @@ apply_gerrit_cl_commit() {
     then
         git fetch $LINK $_ref
         _fetched=$(git rev-parse FETCH_HEAD)
-        if [ $_fetched != $_commit ]
+        if [ "$_fetched" != "$_commit" ]
         then
             echo "$(pwd): WARNING:"
-            echo -e "\tFetched commit is not $_commit"
-            echo -e "\tPlease update the commit hash for $_ref to $_fetched"
+            echo -e "\tFetched commit is not \"$_commit\""
+            echo -e "\tPlease update the commit hash for $_ref to \"$_fetched\""
         fi
         git cherry-pick FETCH_HEAD
     else
