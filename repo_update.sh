@@ -40,16 +40,6 @@ apply_gerrit_cl_commit() {
     fi
 }
 
-apply_local_patches() {
-    _path="${PWD#"$ANDROOT/"}"
-
-    for patch in $ANDROOT/vendor/oss/repo_update/$_path/*.patch
-    do
-        echo applying $patch
-        git am $patch
-    done
-}
-
 if [ "$SKIP_SYNC" != "TRUE" ]; then
     pushd $ANDROOT/.repo/local_manifests
     git pull
@@ -84,8 +74,6 @@ git revert --no-edit f475797d3c031ae97a393fa3e899034836fe7ba6
 git revert --no-edit 35a95e0a9bc9aeab1bb1847180babda2da5fbf90
 # Revert "DO NOT MERGE: Revert "Revert "sdm845: Add libprocessgroup dependency to set_sched_policy users""
 git revert --no-edit db96236976a195bda833d821d584bc76ea4cdbae
-
-apply_local_patches
 
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/gps"
 # gps: sdm845: gnss: use correct format specifier in log
@@ -172,7 +160,13 @@ apply_gerrit_cl_commit refs/changes/87/971787/1 7bde6868ff24001f8b6deb8cf643d86d
 popd
 
 pushd $ANDROOT/hardware/nxp/nfc
-apply_local_patches
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/nxp/nfc"
+# hardware: nxp: Restore pn548 support
+# Change-Id: Iafb0d31626d0a8b9faf22f5307ac8b0a5a9ded37
+apply_gerrit_cl_commit refs/changes/61/744361/2 e3f2e87aaf9a24d61e3e3e350854d6da360696d8
+# hardware: nxp: Restore pn547 support
+# Change-Id: I498367f676f8c8d7fc13e849509d0d8a05ec89a8
+apply_gerrit_cl_commit refs/changes/62/744362/5 6629cfdaf4c41f09b69874e5d0c40552c197a517
 popd
 
 pushd $ANDROOT/frameworks/base
