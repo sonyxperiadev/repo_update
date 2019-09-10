@@ -119,7 +119,9 @@ apply_gerrit_cl_commit refs/changes/00/1112100/2 eeecf8a399080598e5290d3356b0ad5
 # Change-Id: Iffd8a3c00a2a1ad063e10c0ebf3ce9e88e3edea0
 apply_gerrit_cl_commit refs/changes/14/777714/1 065ec9c4857fdd092d689a0526e0caeaaa6b1d72
 
-apply_local_patches
+# hal: msm8916: Add missing bracket to close function definition.
+# Change-Id: I8296a8fb551097fabf72115d2cec0849671b91ea
+apply_gerrit_cl_commit refs/changes/51/1118151/1 b7c1366360089d6cd1b4b18c70085a802a6a0544
 popd
 
 pushd $ANDROOT/hardware/qcom/media
