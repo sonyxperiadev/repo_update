@@ -187,7 +187,7 @@ apply_gerrit_cl_commit refs/changes/75/728575/1 d6f654b013b00fa55b5c50f3f599df50
 apply_gerrit_cl_commit refs/changes/05/728605/1 b6f563436ca1b1496bf6026453e5b805c856f9e6
 # SystemUI: Implement burn-in protection for status-bar/nav-bar items
 # Change-Id: I828dbd4029b4d3b1f2c86b682a03642e3f9aeeb9
-apply_gerrit_cl_commit refs/changes/13/1117113/1 3531822d8f36daa2f60f009b3dfdc03817d936e1
+apply_gerrit_cl_commit refs/changes/40/824340/2 cf575e7f64a976918938e6ea3bc747011fb3b551
 popd
 
 pushd $ANDROOT/system/extras
