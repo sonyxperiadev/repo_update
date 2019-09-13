@@ -133,13 +133,6 @@ apply_gerrit_cl_commit refs/changes/80/832780/1 3a2fe3ec7974f9f1e9772d0009dc4df0
 apply_gerrit_cl_commit refs/changes/84/832784/1 07a63defb34cd0a18849d4488ef11a8793e6cf3b
 popd
 
-pushd $ANDROOT/hardware/qcom/bt
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bt"
-# bt: use TARGET_BOARD_AUTO to override qcom hals
-# Change-Id: I28898df1e8855347129039b5cb0d43975d3a5415
-apply_gerrit_cl_commit refs/changes/69/728569/1 e0e30f0d46ef2ff5bcb707eaf47a596cb57b65af
-popd
-
 pushd $ANDROOT/hardware/qcom/bootctrl
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
 # Build bootctrl.sdm710 with Android.bp.
