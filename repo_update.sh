@@ -175,7 +175,7 @@ apply_gerrit_cl_commit refs/changes/05/728605/1 b6f563436ca1b1496bf6026453e5b805
 apply_gerrit_cl_commit refs/changes/40/824340/2 cf575e7f64a976918938e6ea3bc747011fb3b551
 # core/Build: ro.system when comparing fingerprint
 # Change-Id: Ie5e972047d7983b411004a3f0d67c4636a205162
-apply_gerrit_cl_commit refs/changes/96/1147496/2 b1de316edacfbb17f395eb0277164b988aba0d86
+apply_gerrit_cl_commit refs/changes/96/1147496/2 88c1bf0737f1209c62a7e70a49263834d2104d47
 popd
 
 pushd $ANDROOT/system/extras
