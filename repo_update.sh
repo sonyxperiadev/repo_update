@@ -185,6 +185,7 @@ apply_gerrit_cl_commit refs/changes/52/1117052/1 c82514bd034f214b16d273b10c676dd
 popd
 
 pushd $ANDROOT/packages/apps/DeskClock
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/packages/apps/DeskClock"
 # DeskClock - Moved the android:targetSdkVersion to 25 to fix "Clock has stopped"
 # message displayed when Alarm trigger.
 # Change-Id: I75a96e1ed4acebd118c212b51b7d0e57482a66bb
@@ -192,6 +193,7 @@ apply_gerrit_cl_commit refs/changes/26/987326/1 e6351b3b85b2f5d53d43e4797d3346ce
 popd
 
 pushd $ANDROOT/packages/apps/Messaging
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/packages/apps/Messaging"
 # AOSP/Messaging - Update the Messaging version to 24 until notification
 # related logic changes are made.
 # Change-Id: Ic263e2c63d675c40a2cfa1ca0a8776c8e2b510b9
