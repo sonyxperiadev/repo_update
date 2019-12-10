@@ -184,6 +184,12 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/extras"
 apply_gerrit_cl_commit refs/changes/52/1117052/1 c82514bd034f214b16d273b10c676dd63a9e603b
 popd
 
+pushd $ANDROOT/system/sepolicy
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/sepolicy"
+# property_contexts: Remove compatible guard
+apply_gerrit_cl_commit refs/changes/00/1185400/1 668b7bf07a69e51a6c190d6b366d574b9e4af1d4
+popd
+
 pushd $ANDROOT/packages/apps/DeskClock
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/packages/apps/DeskClock"
 # DeskClock - Moved the android:targetSdkVersion to 25 to fix "Clock has stopped"
