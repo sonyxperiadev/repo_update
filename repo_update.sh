@@ -117,16 +117,6 @@ apply_gerrit_cl_commit refs/changes/54/813054/1 01062d8acaae88b141893d69358d6c13
 apply_gerrit_cl_commit refs/changes/55/813055/1 cb97584647999d7ea8df858f2c3f4bf04f408f34
 popd
 
-pushd $ANDROOT/hardware/qcom/media/sdm845
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/media"
-# Avoid missing dependency error for AOSP builds
-# Change-Id: I19aa7a79f60bfd1182b5846ed54bf0fbf4fe0419
-apply_gerrit_cl_commit refs/changes/80/832780/1 3a2fe3ec7974f9f1e9772d0009dc4df01937f237
-# guard use of kernel sources
-# Change-Id: I9b8cd5200cdfcc5d5ada39e6158383e7da221ae7
-apply_gerrit_cl_commit refs/changes/84/832784/1 07a63defb34cd0a18849d4488ef11a8793e6cf3b
-popd
-
 pushd $ANDROOT/hardware/qcom/bootctrl
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
 # Build bootctrl.sdm710 with Android.bp.
