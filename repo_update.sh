@@ -60,10 +60,6 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
 # gps: use TARGET_BOARD_AUTO to override qcom hals
 # Change-Id: I28898df1e8855347129039b5cb0d43975d3a5415
 apply_gerrit_cl_commit refs/changes/47/728147/2 147270f08ac33d737405afc555b3ddb6f1308336
-# Revert "Remove etc folder under hardware/qcom/gps"
-git revert --no-edit 484979c524067125b56d59afb102003ff48e3702
-# Revert "Handle updating the carrier configuration"
-git revert --no-edit f475797d3c031ae97a393fa3e899034836fe7ba6
 # Revert "FR 46082 - SUPL Network Setup Improvements"
 git revert --no-edit 35a95e0a9bc9aeab1bb1847180babda2da5fbf90
 
