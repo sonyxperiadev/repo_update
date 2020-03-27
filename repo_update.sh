@@ -125,13 +125,6 @@ enter_aosp_dir system/extras
 apply_gerrit_cl_commit refs/changes/52/1117052/1 c82514bd034f214b16d273b10c676dd63a9e603b
 popd
 
-enter_aosp_dir packages/apps/DeskClock
-# DeskClock - Moved the android:targetSdkVersion to 25 to fix "Clock has stopped"
-# message displayed when Alarm trigger.
-# Change-Id: I75a96e1ed4acebd118c212b51b7d0e57482a66bb
-apply_gerrit_cl_commit refs/changes/26/987326/1 e6351b3b85b2f5d53d43e4797d3346ce22a5fa6f
-popd
-
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
