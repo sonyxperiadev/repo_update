@@ -125,11 +125,6 @@ enter_aosp_dir system/extras
 apply_gerrit_cl_commit refs/changes/52/1117052/1 c82514bd034f214b16d273b10c676dd63a9e603b
 popd
 
-enter_aosp_dir system/sepolicy
-# property_contexts: Remove compatible guard
-apply_gerrit_cl_commit refs/changes/00/1185400/1 668b7bf07a69e51a6c190d6b366d574b9e4af1d4
-popd
-
 enter_aosp_dir packages/apps/DeskClock
 # DeskClock - Moved the android:targetSdkVersion to 25 to fix "Clock has stopped"
 # message displayed when Alarm trigger.
