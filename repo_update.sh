@@ -95,22 +95,6 @@ apply_gerrit_cl_commit refs/changes/14/777714/1 065ec9c4857fdd092d689a0526e0caea
 apply_gerrit_cl_commit refs/changes/51/1118151/1 b7c1366360089d6cd1b4b18c70085a802a6a0544
 popd
 
-enter_aosp_dir hardware/qcom/bootctrl
-# Build bootctrl.sdm710 with Android.bp.
-# Change-Id: Ib29d901b44ad0ec079c3e979bfdcd467e1a18377
-apply_gerrit_cl_commit refs/changes/01/965401/1 c665a9c43f379f754b4ee25df2818b6c20c5346e
-# Revert^2 "Build bootctrl.msm8998 with Android.bp.""
-# Change-Id: I6a85b7885903df818deb32c40c751ac4358a6dbc
-apply_gerrit_cl_commit refs/changes/93/968693/1 1933d30528c58598d7423d8b307d8e0fd2c50ad5
-# Build bootctrl.msm8996 with Android.bp.
-# Android.mk itself will be removed in a separate CL.
-# Change-Id: I864bd626d25723bd390b2453022d9cd47a54d2a2
-apply_gerrit_cl_commit refs/changes/96/967996/3 b229dfc102d5ea8e659514c61f6520ab3f9f777c
-# Remove Android.mk rules for building bootctrl.
-# Change-Id: Ib110508065f47a742acd92e03ea42901e8002e4f
-apply_gerrit_cl_commit refs/changes/87/971787/1 7bde6868ff24001f8b6deb8cf643d86d71978b93
-popd
-
 enter_aosp_dir hardware/nxp/nfc
 # hardware: nxp: Restore pn548 support to 1.1 HAL
 # Change-Id: Ifbef5a5ec0928b0a90b2fc71d84872525d0cf1a6
