@@ -132,13 +132,6 @@ enter_aosp_dir packages/apps/DeskClock
 apply_gerrit_cl_commit refs/changes/26/987326/1 e6351b3b85b2f5d53d43e4797d3346ce22a5fa6f
 popd
 
-enter_aosp_dir packages/apps/Messaging
-# AOSP/Messaging - Update the Messaging version to 24 until notification
-# related logic changes are made.
-# Change-Id: Ic263e2c63d675c40a2cfa1ca0a8776c8e2b510b9
-apply_gerrit_cl_commit refs/changes/82/941082/1 8e71d1b707123e1b48b5529b1661d53762922400
-popd
-
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
