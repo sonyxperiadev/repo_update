@@ -120,6 +120,15 @@ apply_gerrit_cl_commit refs/changes/48/1295748/1 6ec651f12a9b67a9d2e41c2fe4d9a71
 apply_gerrit_cl_commit refs/changes/40/824340/2 cf575e7f64a976918938e6ea3bc747011fb3b551
 popd
 
+enter_aosp_dir libcore
+# Replace jniStrError with strerror_r
+# Change-Id: I75815d84c2bfd0fae7ba7a6ee26f91f02f9f0e58
+apply_gerrit_cl_commit refs/changes/62/1260462/1 0b557ea4e20d0384027d745e1c0d6d5328638fd3
+# Update libcore.timezone from android.timezone
+# Change-Id: I9a8e1ff549947ba809b5ab7f3b98338406a46ecb
+apply_gerrit_cl_commit refs/changes/91/1252691/3 7afc6fac7c7e8ef9db73ebb63872b9ec93915866
+popd
+
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
