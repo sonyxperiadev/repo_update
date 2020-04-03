@@ -120,21 +120,21 @@ apply_gerrit_cl_commit refs/changes/48/1295748/1 6ec651f12a9b67a9d2e41c2fe4d9a71
 apply_gerrit_cl_commit refs/changes/40/824340/2 cf575e7f64a976918938e6ea3bc747011fb3b551
 popd
 
-enter_aosp_dir art
-# ART: Ensure dex caches keep classloader live
-# Change-Id: I0eed5b3b46ed681c739d6923a57d0878afbba1a7
-apply_gerrit_cl_commit refs/changes/37/1249137/3 8a1a0f719e42746840f88aad079711e9d951b797
-popd
+# enter_aosp_dir art
+# # ART: Ensure dex caches keep classloader live
+# # Change-Id: I0eed5b3b46ed681c739d6923a57d0878afbba1a7
+# apply_gerrit_cl_commit refs/changes/37/1249137/3 8a1a0f719e42746840f88aad079711e9d951b797
+# popd
 
 enter_aosp_dir external/linux-kselftest
 # Remove mips workarounds.
-apply_gerrit_cl_commit refs/changes/87/1252987/1 11bf6c58505b2d915d93f0d0d2640a10a5bdd64b
+apply_gerrit_cl_commit refs/changes/87/1252987/1 db3a9fa235b35199b31b6e056c5e853e017554fc
 popd
 
 enter_aosp_dir external/seccomp-tests
 # Remove mips workarounds.
 # Change-Id: If2eeebfc1fddebc19ba780c1aaadd929a2db1919
-apply_gerrit_cl_commit refs/changes/67/1253167/1 2795191f28591534096193bf5a92124367786b88
+apply_gerrit_cl_commit refs/changes/67/1253167/1 f109fb9e5705801c4ab8400df9cc9d68d8132022
 popd
 
 # because "set -e" is used above, when we get to this point, we know
