@@ -123,18 +123,12 @@ popd
 
 pushd $ANDROOT/frameworks/base
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
-# fwb: Add check for odm version
-# Change-Id: Ifab6ca5c2f97840bb4192226f191e624267edb32
-apply_gerrit_cl_commit refs/changes/75/728575/1 d6f654b013b00fa55b5c50f3f599df50847811bb
 # Fix bug Device that can't support adoptable storage cannot read the sdcard.
 # Change-Id: I7afe5078650fe646e79fced7456f90d4af8a449a
 apply_gerrit_cl_commit refs/changes/05/728605/1 b6f563436ca1b1496bf6026453e5b805c856f9e6
 # SystemUI: Implement burn-in protection for status-bar/nav-bar items
 # Change-Id: I828dbd4029b4d3b1f2c86b682a03642e3f9aeeb9
 apply_gerrit_cl_commit refs/changes/40/824340/2 cf575e7f64a976918938e6ea3bc747011fb3b551
-# core/Build: ro.system when comparing fingerprint
-# Change-Id: Ie5e972047d7983b411004a3f0d67c4636a205162
-apply_gerrit_cl_commit refs/changes/96/1147496/2 88c1bf0737f1209c62a7e70a49263834d2104d47
 popd
 
 pushd $ANDROOT/system/extras
