@@ -100,19 +100,6 @@ apply_gerrit_cl_commit refs/changes/14/777714/1 065ec9c4857fdd092d689a0526e0caea
 apply_gerrit_cl_commit refs/changes/51/1118151/1 b7c1366360089d6cd1b4b18c70085a802a6a0544
 popd
 
-pushd $ANDROOT/hardware/qcom/media
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/media"
-# msm8998: vdec: Add missing ifdefs for UBWC on DPB buffer decision
-# Change-Id: I76131db5272b97016679c5bc0bf6ae099167cd03
-apply_gerrit_cl_commit refs/changes/39/728339/1 b641243647a7cd3f382dd2be43b74f9d6b7f9310
-# msm8998: mm-video-v4l2: enable compilation for both 3.18 kernel and 4.9 kernel
-# Change-Id: If1eb2575dd80a1e6684c84e573baf78ae698bb20
-apply_gerrit_cl_commit refs/changes/54/813054/1 01062d8acaae88b141893d69358d6c13e3495377
-# msm8998: mm-video-v4l2: Renaming the AU-Delimiter params/extens
-# Change-Id: I3feccfbb06e4e237a601a355ab2f2573a165ed3b
-apply_gerrit_cl_commit refs/changes/55/813055/1 cb97584647999d7ea8df858f2c3f4bf04f408f34
-popd
-
 pushd $ANDROOT/hardware/qcom/bootctrl
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/bootctrl"
 # Build bootctrl.sdm710 with Android.bp.
