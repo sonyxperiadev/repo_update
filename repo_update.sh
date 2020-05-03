@@ -48,7 +48,7 @@ if [ "$SKIP_SYNC" != "TRUE" ]; then
     repo sync -j8 --current-branch --no-tags
 fi
 
-pushd $ANDROOT/hardware/qcom/data/ipacfg-mgr/sdm845
+pushd $ANDROOT/vendor/qcom/opensource/data/ipacfg-mgr/sdm845
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/data/ipacfg-mgr"
 # guard use of kernel sources
 # Change-Id: Ie8e892c5a7cca28cc58cbead88a9796ebc80a9f8
