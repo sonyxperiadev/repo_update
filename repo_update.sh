@@ -55,18 +55,11 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/d
 apply_gerrit_cl_commit refs/changes/23/834623/1 d8c88764440b0114b5f10bd9561a6b5dc4aab0e3
 popd
 
-pushd $ANDROOT/hardware/qcom/gps
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
-# gps: use TARGET_BOARD_AUTO to override qcom hals
-# Change-Id: I28898df1e8855347129039b5cb0d43975d3a5415
-apply_gerrit_cl_commit refs/changes/47/728147/2 147270f08ac33d737405afc555b3ddb6f1308336
-# Revert "FR 46082 - SUPL Network Setup Improvements"
-git revert --no-edit 35a95e0a9bc9aeab1bb1847180babda2da5fbf90
-
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/gps"
-# gps: sdm845: gnss: use correct format specifier in log
-# Change-Id: I24ad0342d6d26f1c7fe2fcac451a71bbfba8bfe0
-apply_gerrit_cl_commit refs/changes/39/804439/1 c1bdb439aaf7ecddd9f499dce5c7b56ea458cce4
+pushd $ANDROOT/vendor/qcom/opensource/gps
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sm8150/gps"
+# batching/geofence: remove unneeded dependency
+# Change-Id: Id6c935b1711eb05b975e6a3e4e1818070be18c73
+apply_gerrit_cl_commit refs/changes/75/1316475/1 04803c9d81f633a96de3d2114aeb81c68e45c07b
 popd
 
 pushd $ANDROOT/hardware/qcom/audio
