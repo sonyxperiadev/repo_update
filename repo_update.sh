@@ -48,18 +48,25 @@ if [ "$SKIP_SYNC" != "TRUE" ]; then
     repo sync -j8 --current-branch --no-tags
 fi
 
-pushd $ANDROOT/vendor/qcom/opensource/data/ipacfg-mgr/sdm845
+pushd $ANDROOT/hardware/qcom/data/ipacfg-mgr/sdm845
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/data/ipacfg-mgr"
 # guard use of kernel sources
 # Change-Id: Ie8e892c5a7cca28cc58cbead88a9796ebc80a9f8
 apply_gerrit_cl_commit refs/changes/23/834623/1 d8c88764440b0114b5f10bd9561a6b5dc4aab0e3
 popd
 
-pushd $ANDROOT/vendor/qcom/opensource/gps
-LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sm8150/gps"
-# batching/geofence: remove unneeded dependency
-# Change-Id: Id6c935b1711eb05b975e6a3e4e1818070be18c73
-apply_gerrit_cl_commit refs/changes/75/1316475/1 04803c9d81f633a96de3d2114aeb81c68e45c07b
+pushd $ANDROOT/hardware/qcom/gps
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/gps"
+# gps: use TARGET_BOARD_AUTO to override qcom hals
+# Change-Id: I28898df1e8855347129039b5cb0d43975d3a5415
+apply_gerrit_cl_commit refs/changes/47/728147/2 147270f08ac33d737405afc555b3ddb6f1308336
+# Revert "FR 46082 - SUPL Network Setup Improvements"
+git revert --no-edit 35a95e0a9bc9aeab1bb1847180babda2da5fbf90
+
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/gps"
+# gps: sdm845: gnss: use correct format specifier in log
+# Change-Id: I24ad0342d6d26f1c7fe2fcac451a71bbfba8bfe0
+apply_gerrit_cl_commit refs/changes/39/804439/1 c1bdb439aaf7ecddd9f499dce5c7b56ea458cce4
 popd
 
 pushd $ANDROOT/hardware/qcom/audio
@@ -91,6 +98,19 @@ apply_gerrit_cl_commit refs/changes/14/777714/1 065ec9c4857fdd092d689a0526e0caea
 # hal: msm8916: Add missing bracket to close function definition.
 # Change-Id: I8296a8fb551097fabf72115d2cec0849671b91ea
 apply_gerrit_cl_commit refs/changes/51/1118151/1 b7c1366360089d6cd1b4b18c70085a802a6a0544
+popd
+
+pushd $ANDROOT/hardware/qcom/media
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/media"
+# msm8998: vdec: Add missing ifdefs for UBWC on DPB buffer decision
+# Change-Id: I76131db5272b97016679c5bc0bf6ae099167cd03
+apply_gerrit_cl_commit refs/changes/39/728339/1 b641243647a7cd3f382dd2be43b74f9d6b7f9310
+# msm8998: mm-video-v4l2: enable compilation for both 3.18 kernel and 4.9 kernel
+# Change-Id: If1eb2575dd80a1e6684c84e573baf78ae698bb20
+apply_gerrit_cl_commit refs/changes/54/813054/1 01062d8acaae88b141893d69358d6c13e3495377
+# msm8998: mm-video-v4l2: Renaming the AU-Delimiter params/extens
+# Change-Id: I3feccfbb06e4e237a601a355ab2f2573a165ed3b
+apply_gerrit_cl_commit refs/changes/55/813055/1 cb97584647999d7ea8df858f2c3f4bf04f408f34
 popd
 
 pushd $ANDROOT/hardware/qcom/bootctrl
