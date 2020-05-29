@@ -11,12 +11,12 @@ fi
 
 ANDROOT=$PWD
 
-pushd () {
+pushd() {
     command pushd "$@" > /dev/null
 }
 
-popd () {
-    command popd "$@" > /dev/null
+popd() {
+    command popd > /dev/null
 }
 
 enter_aosp_dir() {
