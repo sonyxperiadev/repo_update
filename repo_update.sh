@@ -35,10 +35,10 @@ apply_gerrit_cl_commit() {
     local _fetched
 
     # Check whether the commit is already stored
-    if [ -z $(git rev-parse --quiet --verify $_commit^{commit}) ]
+    if [ -z "$(git rev-parse --quiet --verify "$_commit^{commit}")" ]
     # If not, fetch the ref from $LINK
     then
-        git fetch $LINK $_ref
+        git fetch "$LINK" "$_ref"
         _fetched=$(git rev-parse FETCH_HEAD)
         if [ "$_fetched" != "$_commit" ]
         then
@@ -48,11 +48,11 @@ apply_gerrit_cl_commit() {
         fi
         _commit=$_fetched
     fi
-    git cherry-pick $_commit
+    git cherry-pick "$_commit"
 }
 
 if [ "$SKIP_SYNC" != "TRUE" ]; then
-    pushd $ANDROOT/.repo/local_manifests
+    pushd "$ANDROOT/.repo/local_manifests"
     git pull
     popd
 
