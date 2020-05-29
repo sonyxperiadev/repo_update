@@ -114,6 +114,13 @@ apply_gerrit_cl_commit refs/changes/77/980177/3 0285b720ea752c8dcf28c35d794990e9
 apply_gerrit_cl_commit refs/changes/69/980169/2 a58def9e0ce610f1a349d5de31f267129a0a2397
 popd
 
+pushd $ANDROOT/hardware/interfaces
+LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/interfaces"
+# [android10-dev] thermal: Init module to NULL
+# Change-Id: I250006ba6fe9d91e765dde1e4534d5d87aaab879
+apply_gerrit_cl_commit refs/changes/90/1320090/1 3861f7958bec14685cde5b8fee4e590cece76d68
+popd
+
 pushd $ANDROOT/frameworks/base
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/frameworks/base"
 # fwb: Add check for odm version
