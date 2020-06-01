@@ -41,11 +41,13 @@ apply_gerrit_cl_commit() {
 }
 
 if [ "$SKIP_SYNC" != "TRUE" ]; then
+    SYNC_JOBS="${SYNC_JOBS:-8}"
+
     pushd $ANDROOT/.repo/local_manifests
     git pull
     popd
 
-    repo sync -j8 --current-branch --no-tags
+    repo sync -j${SYNC_JOBS} --current-branch --no-tags
 fi
 
 pushd $ANDROOT/vendor/qcom/opensource/data/ipacfg-mgr/sdm845
