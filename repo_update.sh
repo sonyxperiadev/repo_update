@@ -52,7 +52,7 @@ pushd $ANDROOT/vendor/qcom/opensource/data/ipacfg-mgr/sdm845
 LINK=$HTTP && LINK+="://android.googlesource.com/platform/hardware/qcom/sdm845/data/ipacfg-mgr"
 # guard use of kernel sources
 # Change-Id: Ie8e892c5a7cca28cc58cbead88a9796ebc80a9f8
-apply_gerrit_cl_commit refs/changes/23/834623/1 d8c88764440b0114b5f10bd9561a6b5dc4aab0e3
+apply_gerrit_cl_commit refs/changes/23/834623/2 0f42902cbc526d6d5badcece2add39d5badd1537
 popd
 
 pushd $ANDROOT/hardware/qcom/audio
