@@ -84,6 +84,17 @@ is_patch_already_applied() {
     is_stable_patchid_in_range "${_stable_hash%% *}" "$EXISTING_REV_AND_PATCHID_PAIRS"
 }
 
+is_patch_already_reverted() {
+    local _commit=$1
+    local _stable_hash
+
+    [ -z "$_commit" ] && (echo "ERROR: No commit passed"; exit 1)
+
+    _stable_hash=$(git -c diff.noprefix=true show --no-commit-id -R "$_commit" | git patch-id --stable)
+    _stable_hash=${_stable_hash%% *}
+    is_stable_patchid_in_range "$_stable_hash" "$EXISTING_REV_AND_PATCHID_PAIRS"
+}
+
 apply_gerrit_cl_commit() {
     local _ref=$1
     local _commit=$2
@@ -114,6 +125,18 @@ apply_gerrit_cl_commit() {
     fi
 }
 
+revert_commit() {
+    _commit=$1
+
+    [ -z "$_commit" ] && (echo "ERROR: No commit passed"; exit 1)
+
+    if _reverted_as=$(is_patch_already_reverted "$_commit"); then
+        echo "$_commit appears to be reverted as $_reverted_as already"
+    else
+        git revert --no-edit "$_commit"
+    fi
+}
+
 if [ "${SKIP_SYNC:-}" != "TRUE" ]; then
     pushd "$ANDROOT/.repo/local_manifests"
     git pull
@@ -131,15 +154,15 @@ popd
 enter_aosp_dir hardware/qcom/audio
 # hal: Correct mixer control name for 3.5mm headphone
 # Change-Id: I749609aabfed53e8adb3575695c248bf9a674874
-git revert --no-edit 39a2b8a03c0a8a44940ac732f636d9cc1959eff2
+revert_commit 39a2b8a03c0a8a44940ac732f636d9cc1959eff2
 
 # Switch msmnile to new Audio HAL
 # Change-Id: I28e8c28822b29af68b52eb84f07f1eca746afa6d
-git revert --no-edit d0d5c9135fed70a25a42f09f0e32b056bc7b15a8
+revert_commit d0d5c9135fed70a25a42f09f0e32b056bc7b15a8
 
 # switch sm8150 to msmnile
 # Change-id: I37b9461240551037812b35d96d0b2db5e30bae5f
-git revert --no-edit 8e9b92d2c87e9d1cd96ef153853287cb79d5934c
+revert_commit 8e9b92d2c87e9d1cd96ef153853287cb79d5934c
 
 #Add msm8976 tasha sound card detection to msm8916 HAL
 #Change-Id:  Idc5ab339bb9c898205986ba0b4c7cc91febf19de
