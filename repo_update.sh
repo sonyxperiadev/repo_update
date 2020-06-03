@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# exit script immediately if a command fails
-set -e
+# exit script immediately if a command fails or a variable is unset
+set -eu
 
 # Some people require insecure proxies
 HTTP=https
-if [ "$INSECURE_PROXY" = "TRUE" ]; then
+if [ "${INSECURE_PROXY:-}" = "TRUE" ]; then
     HTTP=http
 fi
 
@@ -51,7 +51,7 @@ apply_gerrit_cl_commit() {
     git cherry-pick "$_commit"
 }
 
-if [ "$SKIP_SYNC" != "TRUE" ]; then
+if [ "${SKIP_SYNC:-}" != "TRUE" ]; then
     pushd "$ANDROOT/.repo/local_manifests"
     git pull
     popd
@@ -164,4 +164,4 @@ popd
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
 
-set +e
+set +eu
