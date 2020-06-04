@@ -30,8 +30,10 @@ enter_aosp_dir() {
 }
 
 apply_gerrit_cl_commit() {
-    _ref=$1
-    _commit=$2
+    local _ref=$1
+    local _commit=$2
+    local _fetched
+
     # Check whether the commit is already stored
     if [ -z $(git rev-parse --quiet --verify $_commit^{commit}) ]
     # If not, fetch the ref from $LINK
@@ -44,10 +46,9 @@ apply_gerrit_cl_commit() {
             echo -e "\tFetched commit is not \"$_commit\""
             echo -e "\tPlease update the commit hash for $_ref to \"$_fetched\""
         fi
-        git cherry-pick FETCH_HEAD
-    else
-        git cherry-pick $_commit
+        _commit=$_fetched
     fi
+    git cherry-pick $_commit
 }
 
 if [ "$SKIP_SYNC" != "TRUE" ]; then
