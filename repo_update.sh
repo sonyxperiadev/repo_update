@@ -95,16 +95,6 @@ apply_gerrit_cl_commit refs/changes/14/777714/1 065ec9c4857fdd092d689a0526e0caea
 apply_gerrit_cl_commit refs/changes/51/1118151/1 b7c1366360089d6cd1b4b18c70085a802a6a0544
 popd
 
-enter_aosp_dir hardware/nxp/nfc
-# hardware: nxp: Restore pn548 support to 1.1 HAL
-# Change-Id: Ifbef5a5ec0928b0a90b2fc71d84872525d0cf1a6
-apply_gerrit_cl_commit refs/changes/77/980177/3 0285b720ea752c8dcf28c35d794990e982103ada
-# hardware: nxp: Restore pn547 support
-# Change-Id: I226fa084d22850a8610f1d67ef30b96250fbd570
-# (Cherry-picked from: I498367f676f8c8d7fc13e849509d0d8a05ec89a8)
-apply_gerrit_cl_commit refs/changes/69/980169/2 a58def9e0ce610f1a349d5de31f267129a0a2397
-popd
-
 enter_aosp_dir hardware/interfaces
 # [android10-dev] thermal: Init module to NULL
 # Change-Id: I250006ba6fe9d91e765dde1e4534d5d87aaab879
