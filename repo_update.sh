@@ -128,7 +128,7 @@ popd
 enter_aosp_dir external/seccomp-tests
 # Remove mips workarounds.
 # Change-Id: If2eeebfc1fddebc19ba780c1aaadd929a2db1919
-apply_gerrit_cl_commit refs/changes/67/1253167/1 2795191f28591534096193bf5a92124367786b88
+apply_gerrit_cl_commit refs/changes/67/1253167/1 f109fb9e5705801c4ab8400df9cc9d68d8132022
 popd
 
 # because "set -e" is used above, when we get to this point, we know
