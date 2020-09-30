@@ -110,6 +110,12 @@ apply_gerrit_cl_commit refs/changes/48/1295748/1 6ec651f12a9b67a9d2e41c2fe4d9a71
 apply_gerrit_cl_commit refs/changes/40/824340/3 fcc013282943c935af8225a914a525e996d42866
 popd
 
+enter_aosp_dir build/make build
+# releasetools: Use du -b
+# Change-Id: I1955261de0f6323518b214e2731ef4879c3304e0
+apply_gerrit_cl_commit refs/changes/03/1269603/1 96a913e7f4eceb705b4e6862068117670ce31b79
+popd
+
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
