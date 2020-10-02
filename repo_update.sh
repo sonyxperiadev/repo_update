@@ -116,6 +116,12 @@ enter_aosp_dir build/make build
 apply_gerrit_cl_commit refs/changes/03/1269603/1 96a913e7f4eceb705b4e6862068117670ce31b79
 popd
 
+enter_aosp_dir system/vold
+# Switch to exfatprogs compatible fsck parameter
+# Change-Id: I2c436816a293a36fc9f0cd635cdb9ca3b5f88bfc
+apply_gerrit_cl_commit refs/changes/37/1441937/1 2035a83916914ec8c6ecaacb6f23ea5256be2edd
+popd
+
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
