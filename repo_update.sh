@@ -27,12 +27,81 @@ enter_aosp_dir() {
     LINK="$HTTP://android.googlesource.com/platform/${2:-$1}"
     echo "Entering $1"
     pushd "$ANDROOT/$1"
+
+    local _manifest_branch _head_before_applying
+
+    # TODO: repo info is slow, even if only fetching locally. We should
+    # perhaps just take the manifest branch once for a common repo like `.repo/manifests`?
+    _manifest_branch=$(repo info -l . | sed -n 's/^Manifest branch: //p')
+    # Only include current commits in range. Do not search in picks/reverts that are applied
+    # in this session
+    _head_before_applying=$(git rev-parse HEAD)
+
+    # Use --no-commit-id to make patch-id emit the second hash as null rather
+    # than the commit id (which is exactly what we _do not_ want to match).
+    # This hash is popped off anyway with the `${_hash%% *}' below.
+    # See also https://git-scm.com/docs/git-patch-id:
+    #   When dealing with git diff-tree output, it takes advantage of the fact
+    #   that the patch is prefixed with the object name of the commit, and
+    #   outputs two 40-byte hexadecimal strings. The first string is the patch
+    #   ID, and the second string is the commit ID. This can be used to make a
+    #   mapping from patch ID to commit ID.
+
+    # Prepare a mapping from an existing commit to its stable patch-id:
+    EXISTING_REV_AND_PATCHID_PAIRS=$(for _rev in $(git rev-list "$_manifest_branch..$_head_before_applying"); do
+        local _hash
+        _hash=$(git -c diff.noprefix=true show --no-commit-id "$_rev" | git patch-id --stable)
+        echo "$_rev-${_hash%% *}"
+    done)
+}
+
+is_stable_patchid_in_range() {
+    local _stable_hash=$1
+    local _rev_and_hash_pairs=$2
+
+    [ -z "$_stable_hash" ] && (echo "ERROR: No patchid passed"; exit 1)
+    [ -z "$_rev_and_hash_pairs" ] && (echo "ERROR: No range passed"; exit 1)
+
+    for i in $_rev_and_hash_pairs; do
+        local _rev=${i%%-*}
+        local _hash=${i##*-}
+        if [ "$_stable_hash" == "$_hash" ]; then
+            echo -n "$_rev"
+            return
+        fi
+    done
+
+    false
+}
+
+is_patch_already_applied() {
+    local _commit=$1
+    local _stable_hash
+
+    [ -z "$_commit" ] && (echo "ERROR: No commit passed"; exit 1)
+
+    _stable_hash=$(git -c diff.noprefix=true show --no-commit-id "$_commit" | git patch-id --stable)
+    is_stable_patchid_in_range "${_stable_hash%% *}" "$EXISTING_REV_AND_PATCHID_PAIRS"
+}
+
+is_patch_already_reverted() {
+    local _commit=$1
+    local _stable_hash
+
+    [ -z "$_commit" ] && (echo "ERROR: No commit passed"; exit 1)
+
+    _stable_hash=$(git -c diff.noprefix=true show --no-commit-id -R "$_commit" | git patch-id --stable)
+    _stable_hash=${_stable_hash%% *}
+    is_stable_patchid_in_range "$_stable_hash" "$EXISTING_REV_AND_PATCHID_PAIRS"
 }
 
 apply_gerrit_cl_commit() {
     local _ref=$1
     local _commit=$2
     local _fetched
+
+    [ -z "$_ref" ] && (echo "ERROR: No gerrit fetch ref passed"; exit 1)
+    [ -z "$_commit" ] && (echo "ERROR: No commit passed"; exit 1)
 
     # Check whether the commit is already stored
     if [ -z "$(git rev-parse --quiet --verify "$_commit^{commit}")" ]
@@ -46,9 +115,26 @@ apply_gerrit_cl_commit() {
             echo -e "\tFetched commit is not \"$_commit\""
             echo -e "\tPlease update the commit hash for $_ref to \"$_fetched\""
         fi
-        _commit=$_fetched
+        _commit="$_fetched"
     fi
-    git cherry-pick "$_commit"
+
+    if _applied_as=$(is_patch_already_applied "$_commit"); then
+        echo "$_commit appears to be applied as $_applied_as already"
+    else
+        git cherry-pick "$_commit"
+    fi
+}
+
+revert_commit() {
+    _commit=$1
+
+    [ -z "$_commit" ] && (echo "ERROR: No commit passed"; exit 1)
+
+    if _reverted_as=$(is_patch_already_reverted "$_commit"); then
+        echo "$_commit appears to be reverted as $_reverted_as already"
+    else
+        git revert --no-edit "$_commit"
+    fi
 }
 
 if [ "${SKIP_SYNC:-}" != "TRUE" ]; then
@@ -68,15 +154,15 @@ popd
 enter_aosp_dir hardware/qcom/audio
 # hal: Correct mixer control name for 3.5mm headphone
 # Change-Id: I749609aabfed53e8adb3575695c248bf9a674874
-git revert --no-edit 39a2b8a03c0a8a44940ac732f636d9cc1959eff2
+revert_commit 39a2b8a03c0a8a44940ac732f636d9cc1959eff2
 
 # Switch msmnile to new Audio HAL
 # Change-Id: I28e8c28822b29af68b52eb84f07f1eca746afa6d
-git revert --no-edit d0d5c9135fed70a25a42f09f0e32b056bc7b15a8
+revert_commit d0d5c9135fed70a25a42f09f0e32b056bc7b15a8
 
 # switch sm8150 to msmnile
 # Change-id: I37b9461240551037812b35d96d0b2db5e30bae5f
-git revert --no-edit 8e9b92d2c87e9d1cd96ef153853287cb79d5934c
+revert_commit 8e9b92d2c87e9d1cd96ef153853287cb79d5934c
 
 #Add msm8976 tasha sound card detection to msm8916 HAL
 #Change-Id:  Idc5ab339bb9c898205986ba0b4c7cc91febf19de
