@@ -59,6 +59,12 @@ if [ "${SKIP_SYNC:-}" != "TRUE" ]; then
     repo sync -j8 --current-branch --no-tags
 fi
 
+enter_aosp_dir bionic
+# Add inaddr.h header file
+# Change-Id: Iad92c39fb729538cf51bf9d9037b15515104b453
+apply_gerrit_cl_commit refs/changes/84/1582884/1 5efdad358c77795bef6c011d87625b0a46b0bd0d
+popd
+
 enter_aosp_dir vendor/qcom/opensource/data/ipacfg-mgr/sdm845 hardware/qcom/sdm845/data/ipacfg-mgr
 # guard use of kernel sources
 # Change-Id: Ie8e892c5a7cca28cc58cbead88a9796ebc80a9f8
