@@ -77,31 +77,19 @@ enter_aosp_dir hardware/interfaces
 apply_gerrit_cl_commit refs/changes/90/1320090/1 3861f7958bec14685cde5b8fee4e590cece76d68
 popd
 
-enter_aosp_dir hardware/qcom/wlan
-# wifi_hal: Fix access check of control param file
-# Change-Id: If6308cd790c69d2d57815ef6815c779258005eff
-apply_gerrit_cl_commit refs/changes/49/1532349/1 c889ca2c5503fb955f276c4899924c324effd8cc
-popd
-
 enter_aosp_dir frameworks/base
 # Fix bug Device that can't support adoptable storage cannot read the sdcard.
 # Change-Id: I7afe5078650fe646e79fced7456f90d4af8a449a
-apply_gerrit_cl_commit refs/changes/48/1295748/1 6ec651f12a9b67a9d2e41c2fe4d9a71c29d1cf34
+#apply_gerrit_cl_commit refs/changes/48/1295748/1 6ec651f12a9b67a9d2e41c2fe4d9a71c29d1cf34
 # SystemUI: Implement burn-in protection for status-bar/nav-bar items
 # Change-Id: I828dbd4029b4d3b1f2c86b682a03642e3f9aeeb9
-apply_gerrit_cl_commit refs/changes/40/824340/3 fcc013282943c935af8225a914a525e996d42866
-popd
-
-enter_aosp_dir build/make build
-# releasetools: Use du -b
-# Change-Id: I1955261de0f6323518b214e2731ef4879c3304e0
-apply_gerrit_cl_commit refs/changes/03/1269603/1 96a913e7f4eceb705b4e6862068117670ce31b79
+#apply_gerrit_cl_commit refs/changes/40/824340/3 fcc013282943c935af8225a914a525e996d42866
 popd
 
 enter_aosp_dir system/vold
 # Switch to exfatprogs compatible fsck parameter
 # Change-Id: I2c436816a293a36fc9f0cd635cdb9ca3b5f88bfc
-apply_gerrit_cl_commit refs/changes/37/1441937/1 2035a83916914ec8c6ecaacb6f23ea5256be2edd
+#apply_gerrit_cl_commit refs/changes/37/1441937/1 2035a83916914ec8c6ecaacb6f23ea5256be2edd
 popd
 
 # because "set -e" is used above, when we get to this point, we know
