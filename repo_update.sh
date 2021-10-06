@@ -81,9 +81,6 @@ enter_aosp_dir frameworks/base
 # Fix bug Device that can't support adoptable storage cannot read the sdcard.
 # Change-Id: I7afe5078650fe646e79fced7456f90d4af8a449a
 apply_gerrit_cl_commit refs/changes/48/1295748/1 6ec651f12a9b67a9d2e41c2fe4d9a71c29d1cf34
-# SystemUI: Implement burn-in protection for status-bar/nav-bar items
-# Change-Id: I828dbd4029b4d3b1f2c86b682a03642e3f9aeeb9
-apply_gerrit_cl_commit refs/changes/40/824340/3 fcc013282943c935af8225a914a525e996d42866
 popd
 
 # because "set -e" is used above, when we get to this point, we know
