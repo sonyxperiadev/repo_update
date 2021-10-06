@@ -77,12 +77,6 @@ enter_aosp_dir hardware/interfaces
 apply_gerrit_cl_commit refs/changes/90/1320090/1 3861f7958bec14685cde5b8fee4e590cece76d68
 popd
 
-enter_aosp_dir hardware/qcom/wlan
-# wifi_hal: Fix access check of control param file
-# Change-Id: If6308cd790c69d2d57815ef6815c779258005eff
-apply_gerrit_cl_commit refs/changes/49/1532349/1 c889ca2c5503fb955f276c4899924c324effd8cc
-popd
-
 enter_aosp_dir frameworks/base
 # Fix bug Device that can't support adoptable storage cannot read the sdcard.
 # Change-Id: I7afe5078650fe646e79fced7456f90d4af8a449a
