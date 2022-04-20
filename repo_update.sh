@@ -83,6 +83,12 @@ enter_aosp_dir hardware/qcom/wlan
 apply_gerrit_cl_commit refs/changes/49/1532349/1 c889ca2c5503fb955f276c4899924c324effd8cc
 popd
 
+enter_aosp_dir frameworks/av
+# stagefright: fix stop-error-release crash
+# Change-Id: I1e72d04457c1777b2b5346efa082d15546a5f14d
+apply_gerrit_cl_commit refs/changes/02/1608302/1 ca0c3286a4790a4de2d90cb275ae89a9601b805b
+popd
+
 enter_aosp_dir frameworks/base
 # Fix bug Device that can't support adoptable storage cannot read the sdcard.
 # Change-Id: I7afe5078650fe646e79fced7456f90d4af8a449a
