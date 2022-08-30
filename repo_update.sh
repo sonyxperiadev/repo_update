@@ -71,6 +71,12 @@ enter_aosp_dir hardware/interfaces
 apply_gerrit_cl_commit refs/changes/90/1320090/1 3861f7958bec14685cde5b8fee4e590cece76d68
 popd
 
+enter_aosp_dir packages/modules/Bluetooth
+# revert: Set Bluetooth apex updatable to true
+# Change-Id: I6822814efcc9ad5518bbb56e84df17457812c1ae
+git revert --no-edit f261e756b4f10059b6b90847cd208c95adbd8146
+popd
+
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
