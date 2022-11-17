@@ -56,7 +56,7 @@ if [ "${SKIP_SYNC:-}" != "TRUE" ]; then
     git pull
     popd
 
-    repo sync -j8 --current-branch --no-tags
+    repo sync -j$(nproc) --current-branch --no-tags
 fi
 
 enter_aosp_dir bionic
