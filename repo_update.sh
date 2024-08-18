@@ -71,6 +71,12 @@ enter_aosp_dir hardware/interfaces
 apply_gerrit_cl_commit refs/changes/90/1320090/1 3861f7958bec14685cde5b8fee4e590cece76d68
 popd
 
+enter_aosp_dir external/tinycompress
+# tinycompress: Add support for compress_set_codec_params API
+# Change-Id: I83f52378e288f15bccfc8a7798d33943a02d5e52
+apply_gerrit_cl_commit refs/changes/80/3102880/5 66c2111296fb17c5d92a4e70bf009b99b3a1dffb
+popd
+
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
