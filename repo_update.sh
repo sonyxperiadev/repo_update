@@ -65,12 +65,6 @@ enter_aosp_dir bionic
 apply_gerrit_cl_commit refs/changes/84/1582884/1 5efdad358c77795bef6c011d87625b0a46b0bd0d
 popd
 
-enter_aosp_dir hardware/interfaces
-# [android10-dev] thermal: Init module to NULL
-# Change-Id: I250006ba6fe9d91e765dde1e4534d5d87aaab879
-apply_gerrit_cl_commit refs/changes/90/1320090/1 3861f7958bec14685cde5b8fee4e590cece76d68
-popd
-
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
