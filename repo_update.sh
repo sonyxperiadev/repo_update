@@ -59,6 +59,12 @@ if [ "${SKIP_SYNC:-}" != "TRUE" ]; then
     repo sync -j8 --current-branch --no-tags
 fi
 
+enter_aosp_dir prebuilts/misc
+# Add arm64 prebuilt of libprotobuf-cpp-{lite,full}-21.12
+# Change-Id: I79490ec0ef6d9455676f9b88e78b6324d60dd822
+apply_gerrit_cl_commit refs/changes/88/3884788/1 a99b805a56199eeac881d7dd5d0fc1bbd0f19593
+popd
+
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
