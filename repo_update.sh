@@ -59,12 +59,6 @@ if [ "${SKIP_SYNC:-}" != "TRUE" ]; then
     repo sync -j8 --current-branch --no-tags
 fi
 
-enter_aosp_dir bionic
-# Add inaddr.h header file
-# Change-Id: Iad92c39fb729538cf51bf9d9037b15515104b453
-apply_gerrit_cl_commit refs/changes/84/1582884/1 5efdad358c77795bef6c011d87625b0a46b0bd0d
-popd
-
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
