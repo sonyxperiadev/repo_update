@@ -63,6 +63,10 @@ enter_aosp_dir prebuilts/misc
 # Add arm64 prebuilt of libprotobuf-cpp-{lite,full}-21.12
 # Change-Id: I79490ec0ef6d9455676f9b88e78b6324d60dd822
 apply_gerrit_cl_commit refs/changes/88/3884788/1 a99b805a56199eeac881d7dd5d0fc1bbd0f19593
+
+# Use older libprotobuf-cpp-{lite,full}-21.12
+# Change-Id: Ie7268a5ea0aebe236f48b04cef84f4bd2724b37b
+apply_gerrit_cl_commit refs/changes/27/3918627/1 79b36829e98e1f588a3ecab51d63eac57d6ae635
 popd
 
 # because "set -e" is used above, when we get to this point, we know
