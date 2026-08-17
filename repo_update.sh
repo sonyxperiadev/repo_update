@@ -36,15 +36,19 @@ apply_gerrit_cl_commit() {
 
     # Check whether the commit is already stored
     if [ -z "$(git rev-parse --quiet --verify "$_commit^{commit}")" ]
-    # If not, fetch the ref from $LINK
+    # If not, fetch the ref from $LINK, or the commit itself if no ref was provided
     then
-        git fetch "$LINK" "$_ref"
+        if [ -n "$_ref" ]; then
+            git fetch "$LINK" "$_ref"
+        else
+            git fetch "$LINK" "$_commit"
+        fi
         _fetched=$(git rev-parse FETCH_HEAD)
         if [ "$_fetched" != "$_commit" ]
         then
             echo "$(pwd): WARNING:"
             echo -e "\tFetched commit is not \"$_commit\""
-            echo -e "\tPlease update the commit hash for $_ref to \"$_fetched\""
+            echo -e "\tPlease update the commit hash to \"$_fetched\""
         fi
         _commit=$_fetched
     fi
