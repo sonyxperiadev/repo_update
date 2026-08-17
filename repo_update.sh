@@ -73,6 +73,12 @@ apply_gerrit_cl_commit refs/changes/88/3884788/1 a99b805a56199eeac881d7dd5d0fc1b
 apply_gerrit_cl_commit refs/changes/27/3918627/1 79b36829e98e1f588a3ecab51d63eac57d6ae635
 popd
 
+enter_aosp_dir system/logging
+# logd.auditd: Fix logspam from HexToBytes()
+# Change-Id: I23639d37ba0e49039afc7f16868d238047673c4a
+apply_gerrit_cl_commit "" 7f0f08f7cfa06ca0b309091afd9ffafcdc0a2db0
+popd
+
 # because "set -e" is used above, when we get to this point, we know
 # all patches were applied successfully.
 echo "+++ all patches applied successfully! +++"
